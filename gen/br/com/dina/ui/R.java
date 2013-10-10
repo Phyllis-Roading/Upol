@@ -13,40 +13,40 @@ public final class R {
 		public static final int image = 0x7f010072;
 	}
 	public static final class color {
-		public static final int base_end_color_default = 0x7f0a0008;
-		public static final int base_end_color_pressed = 0x7f0a000a;
-		public static final int base_start_color_default = 0x7f0a0007;
-		public static final int base_start_color_pressed = 0x7f0a0009;
-		public static final int rounded_container_border = 0x7f0a0006;
-		public static final int text_color_default = 0x7f0a000b;
-		public static final int text_color_pressed = 0x7f0a000c;
-		public static final int text_color_selector = 0x7f0a0024;
+		public static final int base_end_color_default = 0x7f090008;
+		public static final int base_end_color_pressed = 0x7f09000a;
+		public static final int base_start_color_default = 0x7f090007;
+		public static final int base_start_color_pressed = 0x7f090009;
+		public static final int rounded_container_border = 0x7f090006;
+		public static final int text_color_default = 0x7f09000b;
+		public static final int text_color_pressed = 0x7f09000c;
+		public static final int text_color_selector = 0x7f090024;
 	}
 	public static final class drawable {
-		public static final int background_view_rounded_bottom = 0x7f020073;
-		public static final int background_view_rounded_container = 0x7f020074;
-		public static final int background_view_rounded_middle = 0x7f020075;
-		public static final int background_view_rounded_single = 0x7f020076;
-		public static final int background_view_rounded_top = 0x7f020077;
-		public static final int button_text_color = 0x7f02008e;
-		public static final int chevron = 0x7f020090;
-		public static final int chevron_default = 0x7f020091;
-		public static final int chevron_default_down = 0x7f020092;
-		public static final int chevron_white = 0x7f020093;
-		public static final int chevron_white_down = 0x7f020094;
-		public static final int icon = 0x7f0200be;
+		public static final int background_view_rounded_bottom = 0x7f020072;
+		public static final int background_view_rounded_container = 0x7f020073;
+		public static final int background_view_rounded_middle = 0x7f020074;
+		public static final int background_view_rounded_single = 0x7f020075;
+		public static final int background_view_rounded_top = 0x7f020076;
+		public static final int button_text_color = 0x7f02008b;
+		public static final int chevron = 0x7f02008d;
+		public static final int chevron_default = 0x7f02008e;
+		public static final int chevron_default_down = 0x7f02008f;
+		public static final int chevron_white = 0x7f020090;
+		public static final int chevron_white_down = 0x7f020091;
+		public static final int icon = 0x7f0200b9;
 	}
 	public static final class id {
-		public static final int buttonsContainer = 0x7f08005e;
-		public static final int chevron = 0x7f080063;
-		public static final int image = 0x7f080060;
-		public static final int itemContainer = 0x7f08005f;
-		public static final int itemCount = 0x7f080062;
-		public static final int scrollView = 0x7f08004e;
-		public static final int subtitle = 0x7f080061;
-		public static final int tableView = 0x7f08004f;
-		public static final int title = 0x7f080049;
-		public static final int viewsContainer = 0x7f08005d;
+		public static final int buttonsContainer = 0x7f07005e;
+		public static final int chevron = 0x7f070063;
+		public static final int image = 0x7f070060;
+		public static final int itemContainer = 0x7f07005f;
+		public static final int itemCount = 0x7f070062;
+		public static final int scrollView = 0x7f07004e;
+		public static final int subtitle = 0x7f070061;
+		public static final int tableView = 0x7f07004f;
+		public static final int title = 0x7f070049;
+		public static final int viewsContainer = 0x7f07005d;
 	}
 	public static final class layout {
 		public static final int list_container = 0x7f030028;
@@ -57,8 +57,8 @@ public final class R {
 		public static final int uitableview_activity = 0x7f030041;
 	}
 	public static final class string {
-		public static final int app_name = 0x7f07002f;
-		public static final int hello = 0x7f07002e;
+		public static final int app_name = 0x7f0c000e;
+		public static final int hello = 0x7f0c000d;
 	}
 	public static final class style {
 		public static final int UITableView = 0x7f0d0059;

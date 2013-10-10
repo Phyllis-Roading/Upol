@@ -60,7 +60,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
-import cn.sharesdk.framework.AbstractWeibo;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -115,64 +114,15 @@ public class StaticAttachmentActivity extends BaseActivity implements
 		super.onCreate(savedInstanceState);
 		requestMessages();//获取服务器端最新消�
 menu=new SlidingMenu(this);
-		// YoumiToolkit.init(this, "2fc95b356bb979ae", "8b94f727980f7158");
-		// //2012-10-09 basilwang pull version to compare
-		// final TKMap versionMap = new TKMap("version");
-		// versionMap.put("versionid",0);
-		// versionMap.pullInBackground(new PullCallback() {
-		//
-		// @Override
-		// public void done(TKMap map, TKException e) {
-		// if (e==null) {
-		// String versionid=versionMap.getString("versionid");
-		// Toast.makeText(StaticAttachmentActivity.this,
-		// "更新数据成功！versionid"+versionid, Toast.LENGTH_LONG).show();
-		// }else {
-		// Toast.makeText(StaticAttachmentActivity.this, "更新数据失败�,
-		// Toast.LENGTH_LONG).show();
-		// }
-		// }
-		// });
 		setTitle(SAXParse.getTAConfiguration().getSelectedCollege().getName());
 		getSherlock().setContentView(R.layout.main_container);
 
-		/*
-		 * Most interactions with what would otherwise be the system UI should
-		 * now be done through this instance. Content, title, action bar, and
-		 * menu inflation can all be done.
-		 * 
-		 * All of the base activities use this class to provide the normal
-		 * action bar functionality so everything that they can do is possible
-		 * using this static attacFragmentStatePagerSupporthment method.
-		 * 
-		 * Calling something like setContentView or getActionBar on this
-		 * instance is required in order to properly set up the wrapped layout
-		 * and dispatch menu events (if they are needed).
-		 */
-
-		// 微博实例的获�
 		mWeibo = Weibo.getInstance(CONSUMER_KEY, REDIRECT_URL);
 		
 
-		// getSherlock().setUiOptions(ActivityInfo.UIOPTION_SPLIT_ACTION_BAR_WHEN_NARROW);
-
-		// ((TextView)findViewById(R.id.text)).setText(R.string.static_attach_content);
 
 		Context context = getSupportActionBar().getThemedContext();
 
-		/*// is not used after adding slidingMenu
-		 * viewtypes = getResources().getStringArray(R.array.viewtype);
-		 * 
-		 * ArrayAdapter<CharSequence> viewTypeList = ArrayAdapter
-		 * .createFromResource(context, R.array.viewtype,
-		 * R.layout.sherlock_spinner_item); viewTypeList
-		 * .setDropDownViewResource(R.layout.sherlock_spinner_dropdown_item);
-		 */
-
-		// getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-		// getSupportActionBar().setListNavigationCallbacks(viewTypeList, this);
-		// getSupportActionBar().setDisplayShowHomeEnabled(false);
-		// getSupportActionBar().setDisplayShowTitleEnabled(false);
 		accountService = new AccountService(this);
 		refreshTabBarTitle();
 		
@@ -198,32 +148,10 @@ menu=new SlidingMenu(this);
 		// add slidingmenu over
 
 		
-		/* // is not used after adding slidingMenu
-		 * getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS
-		 * ); int i = 0; for (String viewtype : viewtypes) { ActionBar.Tab tab =
-		 * getSupportActionBar().newTab(); tab.setText(viewtype);
-		 * tab.setTabListener(this); 2012-06-06 basilwang known bug. action bar
-		 * must be have a callback on 2.3.3 switch (i) { case 0:
-		 * tab.setTabListener(new TabListener(this, "day",
-		 * CurriculumViewPagerFragment.class)); break; // case 1: //
-		 * tab.setTabListener(new TabListener(this, "week", //
-		 * WeekViewFragment.class)); // break; case 1: tab.setTabListener(new
-		 * TabListener(this, "score", ScoreFragment.class)); break; case 2:
-		 * tab.setTabListener(new TabListener(this, "download",
-		 * DownloadCurriculumFragment.class)); break; case 3:
-		 * tab.setTabListener(new TabListener(this, "settings",
-		 * PreferenceFragmentPlugin.class)); break;
-		 * 
-		 * } i++; ActionBar.Tab tab = getSupportActionBar().newTab();
-		 * tab.setTabListener(new TabListener(this, "day",
-		 * CurriculumViewPagerFragment.class));
-		 * getSupportActionBar().addTab(tab); }
-		 */
 
 		YoumiOffersManager
 				.init(context, "2fc95b356bb979ae", "8b94f727980f7158");
 		
-		AbstractWeibo.initSDK(this);
 		int flag = getIntent().getIntExtra("flag", 0);
 		if (flag == SliderMenuFragment.EXIT_APPLICATION) {
 			isExiting = true;
@@ -303,38 +231,6 @@ menu=new SlidingMenu(this);
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Used to put dark icons on light action bar
-		// boolean isLight = SampleList.THEME == R.style.Theme_Sherlock_Light;
-
-		// menu.add("设置")
-		// // .setIcon(R.drawable.ic_compose)
-		// .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-
-		// menu.add("Search")
-		// .setIcon( R.drawable.ic_search)
-		// .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER |
-		// MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-
-		// menu.add("Refresh")
-		// .setIcon( R.drawable.ic_refresh)
-		// .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM |
-		// MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-		//
-		// 2012-11-15 basil 去掉联网�
-		// subMenuForNetwork = menu.addSubMenu(R.string.networkavailable);
-		// subMenuForNetwork.add(0, R.style.Theme_Sherlock, 0,
-		// R.string.checknetwork);
-		// subMenuForNetwork.getItem().setShowAsAction(
-		// MenuItem.SHOW_AS_ACTION_ALWAYS
-		// | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-		// subMenuForNetwork.getItem().setVisible(true);
-
-		// subMenuWithoutNetwork = menu.addSubMenu(R.string.nonetwork);
-		// subMenuWithoutNetwork.add(0, R.style.Theme_Sherlock, 0,
-		// R.string.checknetwork);
-		// subMenuWithoutNetwork.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS
-		// | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-		// subMenuWithoutNetwork.getItem().setVisible(false);
 		checkNetwork();
 
 		return true;
@@ -364,74 +260,8 @@ menu=new SlidingMenu(this);
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// If this callback does not handle the item click,
-		// onPerformDefaultAction
-		// of the ActionProvider is invoked. Hence, the provider encapsulates
-		// the
-		// complete functionality of the menu item.
-		// if (item.getTitle() == "设置") {
-		// // if(NetworkUtils.isConnect(this))
-		// // {
-		// Intent intent = new Intent();
-		// intent.setClass(this, MyPreferenceActivity.class);
-		// startActivity(intent);
-		// // }
-		// // else
-		// // {
-		// // Toast.makeText(StaticAttachmentActivity.this, "请检查网�,
-		// // Toast.LENGTH_SHORT).show();
-		// // }
-		//
-		// }
 		if (item.getTitle().equals("周/天")) {
 			Toast.makeText(this, "周视图暂时关闭，下个版本炫丽呈现", Toast.LENGTH_SHORT).show();
-			// 2012-12-5 basilwang there seems a bug if we change other
-			// tablistenser in one tab
-			// which will create a lot of item option , SCARED!!.
-			// So we use another way. delete and add tab
-//			if (dayorweekClass == CurriculumViewPagerFragment.class) {
-//
-//				// if(dayorweekClass==CurriculumViewPagerFragment.class)
-//				// {
-//				// getSupportActionBar().getSelectedTab().setTabListener(
-//				// new TabListener(this, "curriculum",
-//				// WeekViewFragment.class));
-//				// getSupportActionBar().selectTab(
-//				// getSupportActionBar().getSelectedTab());
-//				// dayorweekClass = WeekViewFragment.class;
-//				// }
-//				// else if(dayorweekClass==WeekViewFragment.class)
-//				// {
-//				// getSupportActionBar().getSelectedTab().setTabListener(
-//				// new TabListener(this, "curriculum",
-//				// CurriculumViewPagerFragment.class));
-//				// getSupportActionBar().selectTab(
-//				// getSupportActionBar().getSelectedTab());
-//				// dayorweekClass = CurriculumViewPagerFragment.class;
-//				// }
-//
-//				/*
-//				 * ActionBar.Tab tab = getSupportActionBar().newTab();
-//				 * tab.setText("课表"); tab.setTabListener(new TabListener(this,
-//				 * "week", WeekViewFragment.class));
-//				 * getSupportActionBar().addTab(tab, 0, true);
-//				 * getSupportActionBar().removeTabAt(1);
-//				 */
-//				switchContent(new WeekViewFragment());
-//				dayorweekClass = WeekViewFragment.class;
-//			} else if (dayorweekClass == WeekViewFragment.class) {
-//
-//				/*
-//				 * ActionBar.Tab tab = getSupportActionBar().newTab();
-//				 * tab.setText("课表"); tab.setTabListener(new TabListener(this,
-//				 * "day", CurriculumViewPagerFragment.class));
-//				 * getSupportActionBar().addTab(tab, 0, true);
-//				 * getSupportActionBar().removeTabAt(1);
-//				 */
-//				switchContent(new CurriculumViewPagerFragment());
-//				dayorweekClass = CurriculumViewPagerFragment.class;
-//
-//			}
 		}
 		if (item.getTitle() == getResources().getString(R.string.checknetwork)) {
 			checkNetwork();
@@ -440,37 +270,6 @@ menu=new SlidingMenu(this);
 		return super.onOptionsItemSelected(item);
 	}
 
-	// @Override
-	// public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
-	//
-	//
-	// }
-	//
-	//
-	// @Override
-	// public void onTabSelected(Tab tab, FragmentTransaction arg1) {
-	//
-	// // Intent intent=new Intent();
-	// //
-	// if(tab.getText()==viewtypes[0]&&this.getClass()!=CurriculumViewPagerActivity.class)
-	// // {
-	// // intent.setClass(this, CurriculumViewPagerActivity.class);
-	// // startActivity(intent);
-	// // }
-	// //
-	// if(tab.getText()==viewtypes[1]&&this.getClass()!=CurriculumActivity.class)
-	// // {
-	// // intent.setClass(this, CurriculumActivity.class);
-	// // startActivity(intent);
-	// // }
-	// }
-	//
-	//
-	// @Override
-	// public void onTabUnselected(Tab arg0, FragmentTransaction arg1) {
-	//
-	//
-	// }
 	private class TabListener implements ActionBar.TabListener {
 		private Fragment mFragment;
 		private final Activity mActivity;
@@ -578,17 +377,6 @@ menu=new SlidingMenu(this);
 
 			adCheckboxPreference = (CheckBoxPreference) root
 					.findPreference(CLOSE_AD);
-			// weekViewCheckboxPreference = (CheckBoxPreference) root
-			// .findPreference(WEEKVIEW_ENABLED);
-			// 2012-09-26 basilwang if weekview already enabled, we set
-			// WeekViewCheckboxPreference enable status is false
-			// if (Preferences.isWeekViewUnlocked(this)) {
-			// weekViewCheckboxPreference.setChecked(true);
-			// weekViewCheckboxPreference.setEnabled(false);
-			// } else {
-			// weekViewCheckboxPreference.setChecked(false);
-			// weekViewCheckboxPreference.setEnabled(true);
-			// }
 			if (Preferences.isAdClosed(this)) {
 				adCheckboxPreference.setChecked(true);
 				adCheckboxPreference.setEnabled(false);
@@ -892,25 +680,6 @@ menu=new SlidingMenu(this);
 		getSlidingMenu().showContent();
 	}
 	
-	public static String actionToString(int action) {
-		switch (action) {
-			case AbstractWeibo.ACTION_AUTHORIZING: return "ACTION_AUTHORIZING";
-			case AbstractWeibo.ACTION_GETTING_FRIEND_LIST: return "ACTION_GETTING_FRIEND_LIST";
-			case AbstractWeibo.ACTION_FOLLOWING_USER: return "ACTION_FOLLOWING_USER";
-			case AbstractWeibo.ACTION_SENDING_DIRECT_MESSAGE: return "ACTION_SENDING_DIRECT_MESSAGE";
-			case AbstractWeibo.ACTION_TIMELINE: return "ACTION_TIMELINE";
-			case AbstractWeibo.ACTION_USER_INFOR: return "ACTION_USER_INFOR";
-			case AbstractWeibo.ACTION_SHARE: return "ACTION_SHARE";
-			default: {
-				return "UNKNOWN";
-			}
-		}
-	}
-	
-	protected void onDestroy() {
-		AbstractWeibo.stopSDK(this);
-		super.onDestroy();
-	}
 
 	public void exit() {
 		StaticAttachmentActivity.this.finish();
