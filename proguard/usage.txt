@@ -1,0 +1,849 @@
+android.annotation.SuppressLint
+android.annotation.TargetApi
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat$AccessibilityServiceInfoIcsImpl
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat$AccessibilityServiceInfoStubImpl
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompatIcs
+android.support.v4.app.ActivityCompat
+android.support.v4.app.ActivityCompatHoneycomb:
+    28:28:ActivityCompatHoneycomb()
+    34:35:static void startActivities(android.app.Activity,android.content.Intent[])
+    39:40:static void dump(android.app.Activity,java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])
+android.support.v4.app.BackStackRecord:
+    static final java.lang.String TAG
+    static final int OP_NULL
+    static final int OP_ADD
+    static final int OP_REPLACE
+    static final int OP_REMOVE
+    static final int OP_HIDE
+    static final int OP_SHOW
+    static final int OP_DETACH
+    static final int OP_ATTACH
+    291:291:public int getId()
+    295:295:public int getBreadCrumbTitleRes()
+    299:299:public int getBreadCrumbShortTitleRes()
+    303:306:public java.lang.CharSequence getBreadCrumbTitle()
+    310:313:public java.lang.CharSequence getBreadCrumbShortTitle()
+    337:338:public android.support.v4.app.FragmentTransaction add(int,android.support.v4.app.Fragment)
+    374:374:public android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment)
+    378:383:public android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment,java.lang.String)
+    396:401:public android.support.v4.app.FragmentTransaction hide(android.support.v4.app.Fragment)
+    405:410:public android.support.v4.app.FragmentTransaction show(android.support.v4.app.Fragment)
+    432:432:public android.support.v4.app.FragmentTransaction setCustomAnimations(int,int)
+    437:441:public android.support.v4.app.FragmentTransaction setCustomAnimations(int,int,int,int)
+    445:446:public android.support.v4.app.FragmentTransaction setTransition(int)
+    450:451:public android.support.v4.app.FragmentTransaction setTransitionStyle(int)
+    455:461:public android.support.v4.app.FragmentTransaction addToBackStack(java.lang.String)
+    465:465:public boolean isAddToBackStackAllowed()
+    478:480:public android.support.v4.app.FragmentTransaction setBreadCrumbTitle(int)
+    484:486:public android.support.v4.app.FragmentTransaction setBreadCrumbTitle(java.lang.CharSequence)
+    490:492:public android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(int)
+    496:498:public android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(java.lang.CharSequence)
+    712:712:public int getTransition()
+    716:716:public int getTransitionStyle()
+android.support.v4.app.Fragment$SavedState:
+    291:293:Fragment$SavedState(android.os.Bundle)
+android.support.v4.app.FragmentActivity$FragmentTag:
+    public static final int Fragment_id
+    public static final int Fragment_name
+    public static final int Fragment_tag
+    121:121:FragmentActivity$FragmentTag()
+android.support.v4.app.FragmentManager:
+    public static final int POP_BACK_STACK_INCLUSIVE
+    139:139:public android.support.v4.app.FragmentTransaction openTransaction()
+    public abstract boolean executePendingTransactions()
+    public abstract android.support.v4.app.Fragment findFragmentById(int)
+    public abstract void popBackStack()
+    public abstract boolean popBackStackImmediate()
+    public abstract void popBackStack(java.lang.String,int)
+    public abstract boolean popBackStackImmediate(java.lang.String,int)
+    public abstract boolean popBackStackImmediate(int,int)
+    public abstract int getBackStackEntryCount()
+    public abstract android.support.v4.app.FragmentManager$BackStackEntry getBackStackEntryAt(int)
+    public abstract void addOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    public abstract void removeOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    public abstract void putFragment(android.os.Bundle,java.lang.String,android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.Fragment getFragment(android.os.Bundle,java.lang.String)
+    public abstract android.support.v4.app.Fragment$SavedState saveFragmentInstanceState(android.support.v4.app.Fragment)
+    public abstract void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])
+    334:335:public static void enableDebugLogging(boolean)
+android.support.v4.app.FragmentManager$BackStackEntry
+android.support.v4.app.FragmentManagerImpl:
+    static final java.lang.String TAG
+    static final java.lang.String TARGET_REQUEST_CODE_STATE_TAG
+    static final java.lang.String TARGET_STATE_TAG
+    static final java.lang.String VIEW_STATE_TAG
+    static final java.lang.String USER_VISIBLE_HINT_TAG
+    static final int ANIM_DUR
+    public static final int ANIM_STYLE_OPEN_ENTER
+    public static final int ANIM_STYLE_OPEN_EXIT
+    public static final int ANIM_STYLE_CLOSE_ENTER
+    public static final int ANIM_STYLE_CLOSE_EXIT
+    public static final int ANIM_STYLE_FADE_ENTER
+    public static final int ANIM_STYLE_FADE_EXIT
+    436:441:public void popBackStack()
+    452:457:public void popBackStack(java.lang.String,int)
+    461:463:public boolean popBackStackImmediate(java.lang.String,int)
+    480:485:public boolean popBackStackImmediate(int,int)
+    490:490:public int getBackStackEntryCount()
+    495:495:public android.support.v4.app.FragmentManager$BackStackEntry getBackStackEntryAt(int)
+    500:504:public void addOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    508:511:public void removeOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    542:550:public android.support.v4.app.Fragment$SavedState saveFragmentInstanceState(android.support.v4.app.Fragment)
+    1286:1294:public android.support.v4.app.Fragment findFragmentByWho(java.lang.String)
+android.support.v4.app.FragmentManagerImpl$2
+android.support.v4.app.FragmentManagerImpl$3
+android.support.v4.app.FragmentPagerAdapter
+android.support.v4.app.FragmentStatePagerAdapter
+android.support.v4.app.FragmentTransaction:
+    public static final int TRANSIT_ENTER_MASK
+    public static final int TRANSIT_EXIT_MASK
+    public static final int TRANSIT_UNSET
+    public static final int TRANSIT_NONE
+    public static final int TRANSIT_FRAGMENT_OPEN
+    public static final int TRANSIT_FRAGMENT_CLOSE
+    public static final int TRANSIT_FRAGMENT_FADE
+    public abstract android.support.v4.app.FragmentTransaction add(int,android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment,java.lang.String)
+    public abstract android.support.v4.app.FragmentTransaction hide(android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction show(android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction setCustomAnimations(int,int)
+    public abstract android.support.v4.app.FragmentTransaction setCustomAnimations(int,int,int,int)
+    public abstract android.support.v4.app.FragmentTransaction setTransition(int)
+    public abstract android.support.v4.app.FragmentTransaction setTransitionStyle(int)
+    public abstract android.support.v4.app.FragmentTransaction addToBackStack(java.lang.String)
+    public abstract boolean isAddToBackStackAllowed()
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbTitle(int)
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbTitle(java.lang.CharSequence)
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(int)
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(java.lang.CharSequence)
+android.support.v4.app.HCSparseArray:
+    223:228:public void setValueAt(int,java.lang.Object)
+    236:240:public int indexOfKey(int)
+    252:260:public int indexOfValue(java.lang.Object)
+    283:310:public void append(int,java.lang.Object)
+android.support.v4.app.LoaderManager:
+    public abstract android.support.v4.content.Loader initLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    public abstract android.support.v4.content.Loader restartLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    public abstract void destroyLoader(int)
+    public abstract android.support.v4.content.Loader getLoader(int)
+    public abstract void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])
+    176:177:public static void enableDebugLogging(boolean)
+android.support.v4.app.LoaderManagerImpl:
+    static final java.lang.String TAG
+    boolean mRetainingStarted
+    boolean mCreatingLoader
+    485:488:private android.support.v4.app.LoaderManagerImpl$LoaderInfo createLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    494:499:private android.support.v4.app.LoaderManagerImpl$LoaderInfo createAndInstallLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    504:511:void installLoader(android.support.v4.app.LoaderManagerImpl$LoaderInfo)
+    539:561:public android.support.v4.content.Loader initLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    589:643:public android.support.v4.content.Loader restartLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    654:674:public void destroyLoader(int)
+    682:693:public android.support.v4.content.Loader getLoader(int)
+android.support.v4.app.LoaderManagerImpl$LoaderInfo:
+    225:229:public LoaderManagerImpl$LoaderInfo(android.support.v4.app.LoaderManagerImpl,int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    359:412:public void onLoadComplete(android.support.v4.content.Loader,java.lang.Object)
+android.support.v4.app.NavUtils
+android.support.v4.app.NotificationCompat
+android.support.v4.app.NotificationCompat$Builder
+android.support.v4.app.NotificationCompat$NotificationCompatImpl
+android.support.v4.app.NotificationCompat$NotificationCompatImplBase
+android.support.v4.app.NotificationCompat$NotificationCompatImplHoneycomb
+android.support.v4.app.NotificationCompatHoneycomb
+android.support.v4.app.ServiceCompat
+android.support.v4.app.ShareCompat
+android.support.v4.app.ShareCompat$IntentBuilder
+android.support.v4.app.ShareCompat$IntentReader
+android.support.v4.app.ShareCompat$ShareCompatImpl
+android.support.v4.app.ShareCompat$ShareCompatImplBase
+android.support.v4.app.ShareCompat$ShareCompatImplICS
+android.support.v4.app.ShareCompatICS
+android.support.v4.app.TaskStackBuilder
+android.support.v4.app.TaskStackBuilder$TaskStackBuilderImpl
+android.support.v4.app.TaskStackBuilder$TaskStackBuilderImplBase
+android.support.v4.app.TaskStackBuilder$TaskStackBuilderImplHoneycomb
+android.support.v4.app.TaskStackBuilderHoneycomb
+android.support.v4.content.AsyncTaskLoader
+android.support.v4.content.AsyncTaskLoader$LoadTask
+android.support.v4.content.CursorLoader
+android.support.v4.content.IntentCompat
+android.support.v4.content.Loader:
+    android.content.Context mContext
+    90:92:public Loader(android.content.Context)
+    102:105:public void deliverResult(java.lang.Object)
+    111:111:public android.content.Context getContext()
+    118:118:public int getId()
+    157:157:public boolean isStarted()
+    166:166:public boolean isAbandoned()
+    175:175:public boolean isReset()
+    217:218:public void forceLoad()
+    225:225:protected void onForceLoad()
+    261:263:public void abandon()
+    275:275:protected void onAbandon()
+    312:314:public boolean takeContentChanged()
+    326:334:public void onContentChanged()
+android.support.v4.content.Loader$ForceLoadContentObserver
+android.support.v4.content.Loader$OnLoadCompleteListener:
+    public abstract void onLoadComplete(android.support.v4.content.Loader,java.lang.Object)
+android.support.v4.content.LocalBroadcastManager
+android.support.v4.content.LocalBroadcastManager$1
+android.support.v4.content.LocalBroadcastManager$BroadcastRecord
+android.support.v4.content.LocalBroadcastManager$ReceiverRecord
+android.support.v4.content.ModernAsyncTask
+android.support.v4.content.ModernAsyncTask$1
+android.support.v4.content.ModernAsyncTask$2
+android.support.v4.content.ModernAsyncTask$3
+android.support.v4.content.ModernAsyncTask$4
+android.support.v4.content.ModernAsyncTask$AsyncTaskResult
+android.support.v4.content.ModernAsyncTask$InternalHandler
+android.support.v4.content.ModernAsyncTask$Status
+android.support.v4.content.ModernAsyncTask$WorkerRunnable
+android.support.v4.content.pm.ActivityInfoCompat
+android.support.v4.database.DatabaseUtilsCompat
+android.support.v4.os.ParcelableCompat:
+    26:42:public ParcelableCompat()
+android.support.v4.os.ParcelableCompatCreatorHoneycombMR2Stub:
+    22:22:ParcelableCompatCreatorHoneycombMR2Stub()
+android.support.v4.util.DebugUtils:
+    25:25:public DebugUtils()
+android.support.v4.util.LruCache
+android.support.v4.util.TimeUtils
+android.support.v4.view.AccessibilityDelegateCompat
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateIcsImpl
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateIcsImpl$1
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateImpl
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateStubImpl
+android.support.v4.view.AccessibilityDelegateCompatIcs
+android.support.v4.view.AccessibilityDelegateCompatIcs$1
+android.support.v4.view.AccessibilityDelegateCompatIcs$AccessibilityDelegateBridge
+android.support.v4.view.KeyEventCompat:
+    25:95:public KeyEventCompat()
+    127:127:public static int normalizeMetaState(int)
+    131:131:public static boolean metaStateHasModifiers(int,int)
+    135:135:public static boolean metaStateHasNoModifiers(int)
+android.support.v4.view.KeyEventCompat$BaseKeyEventVersionImpl:
+    private static final int META_MODIFIER_MASK
+    private static final int META_ALL_MASK
+android.support.v4.view.KeyEventCompat$HoneycombKeyEventVersionImpl:
+    98:98:public int normalizeMetaState(int)
+android.support.v4.view.KeyEventCompat$KeyEventVersionImpl:
+    public abstract int normalizeMetaState(int)
+android.support.v4.view.KeyEventCompatHoneycomb:
+    24:24:KeyEventCompatHoneycomb()
+    26:26:public static int normalizeMetaState(int)
+android.support.v4.view.MenuCompat
+android.support.v4.view.MenuCompat$BaseMenuVersionImpl
+android.support.v4.view.MenuCompat$HoneycombMenuVersionImpl
+android.support.v4.view.MenuCompat$MenuVersionImpl
+android.support.v4.view.MenuItemCompat
+android.support.v4.view.MenuItemCompat$BaseMenuVersionImpl
+android.support.v4.view.MenuItemCompat$HoneycombMenuVersionImpl
+android.support.v4.view.MenuItemCompat$MenuVersionImpl
+android.support.v4.view.MenuItemCompatHoneycomb
+android.support.v4.view.MotionEventCompat:
+    public static final int ACTION_MASK
+    public static final int ACTION_POINTER_DOWN
+    public static final int ACTION_POINTER_UP
+    public static final int ACTION_HOVER_MOVE
+    public static final int ACTION_SCROLL
+    public static final int ACTION_POINTER_INDEX_MASK
+    public static final int ACTION_POINTER_INDEX_SHIFT
+    25:75:public MotionEventCompat()
+    148:148:public static int getActionMasked(android.view.MotionEvent)
+android.support.v4.view.MotionEventCompatEclair:
+    24:24:MotionEventCompatEclair()
+android.support.v4.view.PagerAdapter:
+    public static final int POSITION_UNCHANGED
+    public static final int POSITION_NONE
+    276:277:public void notifyDataSetChanged()
+android.support.v4.view.PagerTitleStrip:
+    private static final java.lang.String TAG
+    private static final int SIDE_ALPHA
+    private static final int TEXT_SPACING
+    67:68:public PagerTitleStrip(android.content.Context)
+android.support.v4.view.VelocityTrackerCompat:
+    25:51:public VelocityTrackerCompat()
+    91:91:public static float getYVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.VelocityTrackerCompat$BaseVelocityTrackerVersionImpl:
+    44:44:public float getYVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.VelocityTrackerCompat$HoneycombVelocityTrackerVersionImpl:
+    58:58:public float getYVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.VelocityTrackerCompat$VelocityTrackerVersionImpl:
+    public abstract float getYVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.VelocityTrackerCompatHoneycomb:
+    24:24:VelocityTrackerCompatHoneycomb()
+    29:29:public static float getYVelocity(android.view.VelocityTracker,int)
+android.support.v4.view.ViewCompat:
+    public static final int OVER_SCROLL_ALWAYS
+    public static final int OVER_SCROLL_IF_CONTENT_SCROLLS
+    public static final int OVER_SCROLL_NEVER
+    28:95:public ViewCompat()
+    153:153:public static boolean canScrollVertically(android.view.View,int)
+    182:183:public static void setOverScrollMode(android.view.View,int)
+    219:220:public static void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    252:253:public static void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    288:289:public static void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+    303:304:public static void setAccessibilityDelegate(android.view.View,android.support.v4.view.AccessibilityDelegateCompat)
+android.support.v4.view.ViewCompat$BaseViewCompatImpl:
+    62:62:public boolean canScrollVertically(android.view.View,int)
+    69:69:public void setOverScrollMode(android.view.View,int)
+    72:72:public void setAccessibilityDelegate(android.view.View,android.support.v4.view.AccessibilityDelegateCompat)
+    75:75:public void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    78:78:public void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    81:81:public void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+android.support.v4.view.ViewCompat$GBViewCompatImpl:
+    91:92:public void setOverScrollMode(android.view.View,int)
+android.support.v4.view.ViewCompat$ICSViewCompatImpl:
+    102:102:public boolean canScrollVertically(android.view.View,int)
+    106:107:public void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    110:111:public void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    114:115:public void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+    118:119:public void setAccessibilityDelegate(android.view.View,android.support.v4.view.AccessibilityDelegateCompat)
+android.support.v4.view.ViewCompat$ViewCompatImpl:
+    public abstract boolean canScrollVertically(android.view.View,int)
+    public abstract void setOverScrollMode(android.view.View,int)
+    public abstract void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    public abstract void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    public abstract void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+    public abstract void setAccessibilityDelegate(android.view.View,android.support.v4.view.AccessibilityDelegateCompat)
+android.support.v4.view.ViewCompatGingerbread:
+    21:21:ViewCompatGingerbread()
+    27:28:public static void setOverScrollMode(android.view.View,int)
+android.support.v4.view.ViewCompatICS:
+    27:27:ViewCompatICS()
+    34:34:public static boolean canScrollVertically(android.view.View,int)
+    38:39:public static void setAccessibilityDelegate(android.view.View,java.lang.Object)
+    42:43:public static void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    46:47:public static void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    50:51:public static void onInitializeAccessibilityNodeInfo(android.view.View,java.lang.Object)
+android.support.v4.view.ViewConfigurationCompat:
+    25:46:public ViewConfigurationCompat()
+android.support.v4.view.ViewConfigurationCompatFroyo:
+    24:24:ViewConfigurationCompatFroyo()
+android.support.v4.view.ViewGroupCompat
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatIcsImpl
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatImpl
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatStubImpl
+android.support.v4.view.ViewGroupCompatIcs
+android.support.v4.view.ViewPager:
+    private static final java.lang.String TAG
+    private static final boolean DEBUG
+    private static final boolean USE_CACHE
+    private static final int DEFAULT_OFFSCREEN_PAGES
+    private static final int MAX_SETTLE_DURATION
+    private static final int MIN_DISTANCE_FOR_FLING
+    private static final int INVALID_POINTER
+    private long mFakeDragBeginTime
+    public static final int SCROLL_STATE_IDLE
+    public static final int SCROLL_STATE_DRAGGING
+    public static final int SCROLL_STATE_SETTLING
+    385:387:public void setCurrentItem(int)
+    485:485:public int getOffscreenPageLimit()
+    506:515:public void setOffscreenPageLimit(int)
+    526:533:public void setPageMargin(int)
+    541:541:public int getPageMargin()
+    550:554:public void setPageMarginDrawable(android.graphics.drawable.Drawable)
+    562:563:public void setPageMarginDrawable(int)
+    596:597:void smoothScrollTo(int,int)
+    1652:1668:public boolean beginFakeDrag()
+    1678:1697:public void endFakeDrag()
+    1707:1735:public void fakeDragBy(float)
+    1747:1747:public boolean isFakeDragging()
+android.support.v4.view.ViewPager$SimpleOnPageChangeListener
+android.support.v4.view.accessibility.AccessibilityEventCompat
+android.support.v4.view.accessibility.AccessibilityEventCompat$AccessibilityEventIcsImpl
+android.support.v4.view.accessibility.AccessibilityEventCompat$AccessibilityEventStubImpl
+android.support.v4.view.accessibility.AccessibilityEventCompat$AccessibilityEventVersionImpl
+android.support.v4.view.accessibility.AccessibilityEventCompatIcs
+android.support.v4.view.accessibility.AccessibilityManagerCompat
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerIcsImpl
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerIcsImpl$1
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerStubImpl
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerVersionImpl
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityStateChangeListenerCompat
+android.support.v4.view.accessibility.AccessibilityManagerCompatIcs
+android.support.v4.view.accessibility.AccessibilityManagerCompatIcs$1
+android.support.v4.view.accessibility.AccessibilityManagerCompatIcs$AccessibilityStateChangeListenerBridge
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoIcsImpl
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoStubImpl
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompatIcs
+android.support.v4.view.accessibility.AccessibilityRecordCompat
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordIcsImpl
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordImpl
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordStubImpl
+android.support.v4.view.accessibility.AccessibilityRecordCompatIcs
+android.support.v4.widget.CursorAdapter
+android.support.v4.widget.CursorAdapter$1
+android.support.v4.widget.CursorAdapter$ChangeObserver
+android.support.v4.widget.CursorAdapter$MyDataSetObserver
+android.support.v4.widget.CursorFilter
+android.support.v4.widget.CursorFilter$CursorFilterClient
+android.support.v4.widget.EdgeEffectCompat:
+    204:204:public boolean onAbsorb(int)
+android.support.v4.widget.EdgeEffectCompat$BaseEdgeEffectImpl:
+    82:82:public boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.EdgeEffectCompat$EdgeEffectIcsImpl:
+    116:116:public boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.EdgeEffectCompat$EdgeEffectImpl:
+    public abstract boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.EdgeEffectCompatIcs:
+    28:28:EdgeEffectCompatIcs()
+    57:58:public static boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.ResourceCursorAdapter
+android.support.v4.widget.SearchViewCompat
+android.support.v4.widget.SearchViewCompat$OnQueryTextListenerCompat
+android.support.v4.widget.SearchViewCompat$SearchViewCompatHoneycombImpl
+android.support.v4.widget.SearchViewCompat$SearchViewCompatHoneycombImpl$1
+android.support.v4.widget.SearchViewCompat$SearchViewCompatImpl
+android.support.v4.widget.SearchViewCompat$SearchViewCompatStubImpl
+android.support.v4.widget.SearchViewCompatHoneycomb
+android.support.v4.widget.SearchViewCompatHoneycomb$1
+android.support.v4.widget.SearchViewCompatHoneycomb$OnQueryTextListenerCompatBridge
+android.support.v4.widget.SimpleCursorAdapter
+android.support.v4.widget.SimpleCursorAdapter$CursorToStringConverter
+android.support.v4.widget.SimpleCursorAdapter$ViewBinder
+br.com.dina.ui.R:
+    9:9:public R()
+br.com.dina.ui.R$attr
+br.com.dina.ui.R$color
+br.com.dina.ui.R$drawable
+br.com.dina.ui.R$id:
+    public static final int viewsContainer
+    public static final int itemCount
+    public static final int scrollView
+    10:10:public R$id()
+br.com.dina.ui.R$layout:
+    48:48:public R$layout()
+br.com.dina.ui.R$string
+br.com.dina.ui.R$style
+br.com.dina.ui.R$styleable:
+    public static final int UIButton_dinasubtitle
+    public static final int UIButton_image
+    public static final int UIButton_dinatitle
+    56:56:public R$styleable()
+br.com.dina.ui.activity.UITableViewActivity:
+    23:23:protected br.com.dina.ui.widget.UITableView getUITableView()
+br.com.dina.ui.model.BasicItem:
+    16:19:public BasicItem(java.lang.String,java.lang.String)
+    21:25:public BasicItem(java.lang.String,java.lang.String,int)
+    33:37:public BasicItem(int,java.lang.String,java.lang.String)
+    39:44:public BasicItem(int,java.lang.String,java.lang.String,int)
+    51:52:public void setDrawable(int)
+    59:60:public void setTitle(java.lang.String)
+    75:76:public void setColor(int)
+    85:86:public void setClickable(boolean)
+br.com.dina.ui.model.IListItem:
+    public abstract void setClickable(boolean)
+br.com.dina.ui.widget.UIButton:
+    73:74:public void addClickListener(br.com.dina.ui.widget.UIButton$ClickListener)
+    80:81:public void removeClickListener()
+br.com.dina.ui.widget.UITableView:
+    45:46:public void addBasicItem(java.lang.String)
+    54:55:public void addBasicItem(java.lang.String,java.lang.String)
+    64:65:public void addBasicItem(java.lang.String,java.lang.String,int)
+    74:75:public void addBasicItem(int,java.lang.String,java.lang.String)
+    84:85:public void addBasicItem(int,java.lang.String,java.lang.String,int)
+    219:219:public int getCount()
+    242:243:public void removeClickListener()
+net.basilwang.AddSubMenu:
+    57:57:public com.actionbarsherlock.view.SubMenu getSubMenu()
+net.basilwang.AlertDialogFactory:
+    19:19:public AlertDialogFactory()
+net.basilwang.BlocksActivity:
+    private static final java.lang.String TAG
+    public static final java.lang.String EXTRA_TIME_START
+    public static final java.lang.String EXTRA_TIME_END
+    private static final int DISABLED_BLOCK_ALPHA
+net.basilwang.BuildConfig
+net.basilwang.CheckCodeDialog:
+    static final java.lang.String TAG
+net.basilwang.CurriculumFragment
+net.basilwang.CurriculumFragment$1
+net.basilwang.CurriculumFragment$WeekViewPagerAdapter
+net.basilwang.CurriculumViewPagerActivity$DayViewPagerAdapter:
+    92:94:private android.view.View removeDayViewAt(android.support.v4.view.ViewPager,int)
+net.basilwang.CurriculumViewPagerFragment:
+    static final java.lang.String TAG
+net.basilwang.CurriculumViewPagerFragment$DayViewPagerAdapter:
+    115:117:private android.view.View removeDayViewAt(android.support.v4.view.ViewPager,int)
+net.basilwang.DayView:
+    18:20:public DayView(android.content.Context)
+net.basilwang.EditLogonPreferenceActivity:
+    net.basilwang.core.TAHelper taHelper
+net.basilwang.LogonPreferenceActivity:
+    143:145:public int getCurrentYear()
+net.basilwang.LogonPreferenceActivity$SemesterInit:
+    180:182:public LogonPreferenceActivity$SemesterInit(net.basilwang.LogonPreferenceActivity)
+net.basilwang.MyPreferenceActivity:
+    static final java.lang.String TAG
+net.basilwang.PreferenceFragmentPlugin:
+    private static final int FIRST_REQUEST_CODE
+    private static final int MSG_BIND_PREFERENCES
+    45:47:public PreferenceFragmentPlugin(int)
+    174:174:public android.preference.PreferenceManager getPreferenceManager()
+    218:218:public void addPreferencesFromIntent(android.content.Intent)
+    246:249:public android.preference.Preference findPreference(java.lang.CharSequence)
+net.basilwang.R:
+    10:10:public R()
+net.basilwang.R$anim
+net.basilwang.R$array
+net.basilwang.R$attr
+net.basilwang.R$bool
+net.basilwang.R$color
+net.basilwang.R$dimen
+net.basilwang.R$drawable
+net.basilwang.R$id
+net.basilwang.R$integer
+net.basilwang.R$layout
+net.basilwang.R$string
+net.basilwang.R$style
+net.basilwang.R$styleable:
+    public static final int BlocksLayout_columns
+    public static final int Gallery1_android_galleryItemBackground
+    public static final int SherlockActionBar_background
+    public static final int SherlockActionBar_backgroundSplit
+    public static final int SherlockActionBar_backgroundStacked
+    public static final int SherlockActionBar_customNavigationLayout
+    public static final int SherlockActionBar_displayOptions
+    public static final int SherlockActionBar_divider
+    public static final int SherlockActionBar_height
+    public static final int SherlockActionBar_homeLayout
+    public static final int SherlockActionBar_icon
+    public static final int SherlockActionBar_indeterminateProgressStyle
+    public static final int SherlockActionBar_itemPadding
+    public static final int SherlockActionBar_logo
+    public static final int SherlockActionBar_navigationMode
+    public static final int SherlockActionBar_progressBarPadding
+    public static final int SherlockActionBar_progressBarStyle
+    public static final int SherlockActionBar_subtitle
+    public static final int SherlockActionBar_subtitleTextStyle
+    public static final int SherlockActionBar_title
+    public static final int SherlockActionBar_titleTextStyle
+    public static final int SherlockActionMenuItemView_android_minWidth
+    public static final int SherlockActionMode_background
+    public static final int SherlockActionMode_backgroundSplit
+    public static final int SherlockActionMode_height
+    public static final int SherlockActionMode_subtitleTextStyle
+    public static final int SherlockActionMode_titleTextStyle
+    public static final int SherlockActivityChooserView_android_background
+    public static final int SherlockActivityChooserView_expandActivityOverflowButtonDrawable
+    public static final int SherlockActivityChooserView_initialActivityCount
+    public static final int SherlockMenuGroup_android_checkableBehavior
+    public static final int SherlockMenuGroup_android_enabled
+    public static final int SherlockMenuGroup_android_id
+    public static final int SherlockMenuGroup_android_menuCategory
+    public static final int SherlockMenuGroup_android_orderInCategory
+    public static final int SherlockMenuGroup_android_visible
+    public static final int SherlockMenuItem_android_actionLayout
+    public static final int SherlockMenuItem_android_actionProviderClass
+    public static final int SherlockMenuItem_android_actionViewClass
+    public static final int SherlockMenuItem_android_alphabeticShortcut
+    public static final int SherlockMenuItem_android_checkable
+    public static final int SherlockMenuItem_android_checked
+    public static final int SherlockMenuItem_android_enabled
+    public static final int SherlockMenuItem_android_icon
+    public static final int SherlockMenuItem_android_id
+    public static final int SherlockMenuItem_android_menuCategory
+    public static final int SherlockMenuItem_android_numericShortcut
+    public static final int SherlockMenuItem_android_onClick
+    public static final int SherlockMenuItem_android_orderInCategory
+    public static final int SherlockMenuItem_android_showAsAction
+    public static final int SherlockMenuItem_android_title
+    public static final int SherlockMenuItem_android_titleCondensed
+    public static final int SherlockMenuItem_android_visible
+    public static final int SherlockMenuView_headerBackground
+    public static final int SherlockMenuView_horizontalDivider
+    public static final int SherlockMenuView_itemBackground
+    public static final int SherlockMenuView_itemIconDisabledAlpha
+    public static final int SherlockMenuView_itemTextAppearance
+    public static final int SherlockMenuView_preserveIconSpacing
+    public static final int SherlockMenuView_verticalDivider
+    public static final int SherlockMenuView_windowAnimationStyle
+    public static final int SherlockSpinner_android_dropDownHorizontalOffset
+    public static final int SherlockSpinner_android_dropDownSelector
+    public static final int SherlockSpinner_android_dropDownVerticalOffset
+    public static final int SherlockSpinner_android_dropDownWidth
+    public static final int SherlockSpinner_android_gravity
+    public static final int SherlockSpinner_android_popupBackground
+    public static final int SherlockSpinner_android_popupPromptView
+    public static final int SherlockSpinner_android_prompt
+    public static final int SherlockTheme_absForceOverflow
+    public static final int SherlockTheme_actionBarDivider
+    public static final int SherlockTheme_actionBarItemBackground
+    public static final int SherlockTheme_actionBarSize
+    public static final int SherlockTheme_actionBarSplitStyle
+    public static final int SherlockTheme_actionBarStyle
+    public static final int SherlockTheme_actionBarTabBarStyle
+    public static final int SherlockTheme_actionBarTabStyle
+    public static final int SherlockTheme_actionBarTabTextStyle
+    public static final int SherlockTheme_actionBarWidgetTheme
+    public static final int SherlockTheme_actionButtonStyle
+    public static final int SherlockTheme_actionDropDownStyle
+    public static final int SherlockTheme_actionMenuTextAppearance
+    public static final int SherlockTheme_actionMenuTextColor
+    public static final int SherlockTheme_actionModeBackground
+    public static final int SherlockTheme_actionModeCloseButtonStyle
+    public static final int SherlockTheme_actionModeCloseDrawable
+    public static final int SherlockTheme_actionModePopupWindowStyle
+    public static final int SherlockTheme_actionModeShareDrawable
+    public static final int SherlockTheme_actionModeSplitBackground
+    public static final int SherlockTheme_actionModeStyle
+    public static final int SherlockTheme_actionOverflowButtonStyle
+    public static final int SherlockTheme_actionSpinnerItemStyle
+    public static final int SherlockTheme_activatedBackgroundIndicator
+    public static final int SherlockTheme_activityChooserViewStyle
+    public static final int SherlockTheme_android_windowIsFloating
+    public static final int SherlockTheme_buttonStyleSmall
+    public static final int SherlockTheme_dividerVertical
+    public static final int SherlockTheme_dropDownListViewStyle
+    public static final int SherlockTheme_dropdownListPreferredItemHeight
+    public static final int SherlockTheme_homeAsUpIndicator
+    public static final int SherlockTheme_listPopupWindowStyle
+    public static final int SherlockTheme_listPreferredItemHeightSmall
+    public static final int SherlockTheme_listPreferredItemPaddingLeft
+    public static final int SherlockTheme_listPreferredItemPaddingRight
+    public static final int SherlockTheme_popupMenuStyle
+    public static final int SherlockTheme_spinnerDropDownItemStyle
+    public static final int SherlockTheme_spinnerItemStyle
+    public static final int SherlockTheme_textAppearanceLargePopupMenu
+    public static final int SherlockTheme_textAppearanceListItemSmall
+    public static final int SherlockTheme_textAppearanceSmall
+    public static final int SherlockTheme_textAppearanceSmallPopupMenu
+    public static final int SherlockTheme_textColorPrimary
+    public static final int SherlockTheme_textColorPrimaryDisableOnly
+    public static final int SherlockTheme_textColorPrimaryInverse
+    public static final int SherlockTheme_windowActionBar
+    public static final int SherlockTheme_windowActionBarOverlay
+    public static final int SherlockTheme_windowActionModeOverlay
+    public static final int SherlockTheme_windowContentOverlay
+    public static final int SherlockTheme_windowMinWidthMajor
+    public static final int SherlockTheme_windowMinWidthMinor
+    public static final int SherlockTheme_windowNoTitle
+    public static final int SherlockTheme_windowSplitActionBar
+    public static final int TimeRulerView_dividerColor
+    public static final int TimeRulerView_endHour
+    public static final int TimeRulerView_headerWidth
+    public static final int TimeRulerView_horizontalDivider_avoidDuplicateWithSherlock
+    public static final int TimeRulerView_hourHeight
+    public static final int TimeRulerView_labelColor
+    public static final int TimeRulerView_labelPaddingLeft
+    public static final int TimeRulerView_labelTextSize
+    public static final int TimeRulerView_startHour
+    public static final int TimeRulerView_weekDayHeaderHeight
+    public static final int UIButton_dinasubtitle
+    public static final int UIButton_dinatitle
+    public static final int UIButton_image
+    1557:1557:public R$styleable()
+net.basilwang.R$xml
+net.basilwang.StaticAttachmentActivity:
+    static final java.lang.String TAG
+net.basilwang.UpdateProgressView:
+    16:18:public UpdateProgressView(android.content.Context)
+net.basilwang.WeekViewFragment:
+    static final java.lang.String TAG
+net.basilwang.config.College:
+    173:173:public java.lang.String getCookieless()
+    177:177:public java.lang.String getHascheckcode()
+net.basilwang.config.CurriculumConfig:
+    217:217:public java.lang.String getTdContent()
+    221:221:public java.util.List getItemintds()
+    229:229:public java.util.List getTdContentToCurriculums()
+net.basilwang.config.ItemInTD:
+    36:36:public java.lang.String getPattern()
+    40:40:public java.util.List getDbfields()
+net.basilwang.config.ScoreConfigInTD:
+    39:39:public java.lang.String getTitle()
+    71:71:public java.lang.String getDatatype()
+net.basilwang.config.Server:
+    24:24:public java.lang.String getPort()
+net.basilwang.config.TAConfiguration:
+    25:25:public java.util.List getUrlMaps()
+    29:29:public java.util.List getColleges()
+net.basilwang.config.TdContentToCurriculum:
+    43:43:public java.lang.String getName()
+    47:47:public java.lang.String getItemcount()
+    51:51:public java.lang.String getItemseries()
+net.basilwang.config.UrlMap:
+    140:140:public java.lang.String getUsercurriculumconfig()
+    144:144:public java.lang.String getUserscoreconfig()
+net.basilwang.core.CurriculumPreferenceTask:
+    static final java.lang.String TAG
+net.basilwang.core.LoadCheckCodeTask:
+    43:45:public void setContext(android.content.Context)
+net.basilwang.core.LogOnPreferenceTask:
+    static final java.lang.String TAG
+net.basilwang.core.ParseCurriculumInfo:
+    private static final int CURRICULUM_HTML_COLUMNS_COUNT
+net.basilwang.core.ScorePreferenceTask:
+    static final java.lang.String TAG
+net.basilwang.core.TAConfiguration
+net.basilwang.core.TAContext:
+    33:33:public java.lang.String getStudentNum()
+    102:103:public void setLogonViewStateForPost(java.lang.String)
+net.basilwang.core.TAResult:
+    47:48:public void addFetchData(java.lang.String,java.lang.Object)
+net.basilwang.core.UrlMap
+net.basilwang.core.UrlMapParserNotFoundException
+net.basilwang.dao.ClassIndexAdapter
+net.basilwang.dao.CurriculumAdapter
+net.basilwang.dao.CurriculumService:
+    38:46:public java.lang.Boolean needDownloadCurriculum()
+    63:90:public java.util.List getCurriculumByDay(java.lang.String,int,int)
+    95:101:public android.database.Cursor getCurriculumCursorByDay(java.lang.String,int,int)
+    240:253:public java.lang.String[] getSemesterNames()
+net.basilwang.dao.Preferences:
+    private static final java.lang.String cTag
+    public static final java.lang.String FIRST_TIME
+    public static final java.lang.String ANALYTICS_ENABLED
+    public static final java.lang.String LAST_VERSION
+    public static final java.lang.String TOP_LEVEL_COUNTS_KEY
+    public static final java.lang.String CALENDAR_ID_KEY
+    public static final java.lang.String DEFAULT_REMINDER_KEY
+    public static final java.lang.String LOGON_URL
+    public static final java.lang.String LOGON_USER
+    public static final java.lang.String LOGON_ACCOUNT_ID
+    public static final java.lang.String LOGON_PASSWORD
+    public static final java.lang.String LOGON_SELF_SIGNED_CERT
+    public static final java.lang.String LOGON_INTERVAL
+    public static final java.lang.String GOOGLE_AUTH_COOKIE
+    public static final java.lang.String GOOGLE_ACCOUNT_NAME
+    public static final java.lang.String GOOGLE_DEVICE_REGISTRATION_ID
+    public static final java.lang.String NOTIFICATION_ID
+    public static final java.lang.String WIDGET_QUERY_PREFIX
+    public static final java.lang.String WIDGET_PROJECT_ID_PREFIX
+    public static final java.lang.String WIDGET_CONTEXT_ID_PREFIX
+    public static final java.lang.String ABOUT_US
+    public static final java.lang.String LOGON_ADD_PREFERENCES
+    public static final java.lang.String LOGON_PREFERENCES
+    public static final java.lang.String LOGON_ACCOUNT_PREFERENCES
+    public static final java.lang.String CEMESTER_START_PREFERENCES
+    public static final java.lang.String CEMESTER_END_PREFERENCES
+    public static final java.lang.String CEMESTER_WEEKS_NUM
+    public static final java.lang.String CEMESTER_INDEX_PREFERENCES
+    public static final java.lang.String SCORE_CEMESTER_INDEX_PREFERENCES
+    public static final java.lang.String WEEKVIEW_ENABLED
+    public static final java.lang.String WEEKVIEW_UNLOCKED_STATUS
+    public static final java.lang.String SCORE_ENABLED
+    public static final java.lang.String SCORE_UNLOCKED_STATUS
+    public static final java.lang.String CLOSE_AD
+    public static final java.lang.String CLOSE_AD_STATUS
+    public static final java.lang.String CURRICULUM_TO_SHOW
+    public static final java.lang.String CURRICULUM_TO_DOWNLOAD
+    public static final java.lang.String ENTRACETEAR
+    public static final java.lang.String SCORE_SEMESTER_NAME
+    public static final java.lang.String SCORE_SPINNER_SELECTION
+    public static final java.lang.String SCORE_TIP_SHOW
+    public static final java.lang.String CURRICULUM_TIP_SHOW
+    public static final java.lang.String WEEK_VIEW_TIP_SHOW
+    public static final java.lang.String SOCRE_DOWNLOAD_TIP
+    public static final java.lang.String CURRICULUM_DOWNLOAD_TIP
+    public static final java.lang.String RU_GUO_ZHAI
+    25:25:public Preferences()
+    81:84:public static boolean validateTracksSettings(android.content.Context)
+    89:89:public static int getEntranceyear(android.content.Context)
+    93:93:public static int getTracksInterval(android.content.Context)
+    97:97:public static int getLastVersion(android.content.Context)
+    109:109:public static boolean isFirstTime(android.content.Context)
+    113:113:public static boolean isAnalyticsEnabled(android.content.Context)
+    118:118:public static boolean isWeekViewUnlocked(android.content.Context)
+    123:123:public static boolean isScoreUnlocked(android.content.Context)
+    148:148:public static int getNotificationId(android.content.Context)
+    152:156:public static void incrementNotificationId(android.content.Context)
+    159:159:public static java.lang.String getGoogleAuthCookie(android.content.Context)
+    164:164:public static java.lang.String getGoogleAccountName(android.content.Context)
+    169:169:public static java.lang.String getGooglDeviceRegistrationId(android.content.Context)
+    174:174:public static java.lang.Boolean isTracksSelfSignedCert(android.content.Context)
+    179:181:public static int getDefaultReminderMinutes(android.content.Context)
+    185:195:public static int[] getTopLevelCounts(android.content.Context)
+    199:209:public static int getCalendarId(android.content.Context)
+    213:213:public static java.lang.String getWidgetQueryKey(int)
+    217:217:public static java.lang.String getWidgetProjectIdKey(int)
+    221:221:public static java.lang.String getWidgetContextIdKey(int)
+    225:225:public static java.lang.String getWidgetQuery(android.content.Context,java.lang.String)
+net.basilwang.dao.Preferences$DeleteCompletedPeriod
+net.basilwang.dao.ScoreService:
+    45:49:public android.database.Cursor getScores(int)
+net.basilwang.dao.TASQLiteOpenHelper:
+    private static final java.lang.String TAG
+    private static final java.lang.String name
+    private static final int version
+net.basilwang.entity.Account:
+    56:57:public void setIshttps(boolean)
+net.basilwang.entity.Semester:
+    private int id
+    25:25:public int getId()
+    29:30:public void setId(int)
+net.basilwang.listener.ShowTipListener:
+    public abstract void showTipIfNecessary()
+net.basilwang.migrations.V11Migration
+net.basilwang.ui.widget.BlocksLayout:
+    108:112:public void removeAllBlocks()
+net.basilwang.utils.ChannelStoreUtils
+net.basilwang.utils.Constants
+net.basilwang.utils.CurriculumUtils:
+    9:9:public CurriculumUtils()
+net.basilwang.utils.DateUtils:
+    35:35:public DateUtils()
+    113:122:public static long parseIso8601Date(java.lang.String)
+    126:131:public static java.lang.String formatIso8601Date(long)
+    135:135:public static boolean isSameDay(long,long)
+    143:162:public static java.lang.CharSequence displayDateRange(android.content.Context,long,long,boolean)
+    178:192:public static java.lang.CharSequence displayShortDateTime(android.content.Context,long)
+net.basilwang.utils.DimentionUtils:
+    8:8:public DimentionUtils()
+    15:16:public static int px2dip(android.content.Context,float)
+net.basilwang.utils.Maps:
+    25:25:public Maps()
+    41:41:public static java.util.LinkedHashMap newLinkedHashMap()
+net.basilwang.utils.NetworkUtils:
+    8:8:public NetworkUtils()
+net.basilwang.utils.PreferenceUtils:
+    8:8:public PreferenceUtils()
+net.basilwang.utils.TAUtils
+net.basilwang.utils.TipUtils:
+    11:11:public TipUtils()
+net.basilwang.view.DrawableUtils:
+    25:27:private DrawableUtils()
+net.basilwang.view.TextColours:
+    private static final java.lang.String cTag
+    63:63:public int getTextColour(int)
+net.basilwang.widget.Clock
+net.basilwang.widget.CurriculumWidget:
+    public static final java.lang.String TAG
+net.basilwang.widget.CurriculumWidgetLoader
+net.basilwang.widget.CurriculumWidgetProvider_4x2:
+    private static final java.lang.String TAG
+    private static final int ENTRIES
+    191:196:private void setActivityIntent(android.content.Context,android.widget.RemoteViews,int,android.content.Intent)
+net.basilwang.widget.SimpleCursorLoader
+net.basilwang.widget.Throttle
+net.basilwang.widget.Throttle$MyTimerTask
+net.basilwang.widget.Throttle$MyTimerTask$HandlerRunnable
+net.basilwang.widget.ThrottlingCursorLoader
+net.basilwang.widget.ThrottlingCursorLoader$1
+net.basilwang.widget.WidgetManager:
+    private static final java.lang.String TAG
+    40:43:public synchronized void createWidgets(android.content.Context,int[])
+net.youmi.android.AdManager:
+    public static void disableUpdateApp()
+    public static void setDonotClearWebViewCache()
+net.youmi.android.AdView:
+    public AdView(android.app.Activity,int,int,int)
+    void a(android.app.Activity,int,int,int)
+    public void setAdViewListener(net.youmi.android.AdViewListener)
+    public void refreshAd()
+    void e()
+    void f()
+net.youmi.android.ac
+net.youmi.android.ad
+net.youmi.android.ae:
+    static void f()
+    static void g()
+net.youmi.android.am
+net.youmi.android.bm
+net.youmi.android.bv
+net.youmi.android.cg

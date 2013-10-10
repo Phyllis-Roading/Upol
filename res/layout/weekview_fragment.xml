@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright 2010 Google Inc.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="#ffd3d3d3"
+    android:padding="4dip" >
+
+    <view
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/header_scroll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fadingEdge="none"
+        android:scrollbars="none"
+        class="net.basilwang.ui.widget.ObservableHorizontalScrollView" >
+
+        <FrameLayout
+            android:id="@+id/week_day_container"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp">
+
+            <TextView
+                android:id="@+id/splitcell"
+                style="@style/week_day_header"
+                android:layout_width="46dp"
+                android:layout_height="fill_parent" />
+
+            <TextView
+                android:id="@+id/monday"
+                style="@style/week_day_header"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="周一" />
+
+            <TextView
+                android:id="@+id/tuesday"
+                style="@style/week_day_header"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="周二" />
+
+            <TextView
+                android:id="@+id/wednesday"
+                style="@style/week_day_header"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="周三" />
+
+            <TextView
+                android:id="@+id/thursday"
+                style="@style/week_day_header"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="周四" />
+
+            <TextView
+                android:id="@+id/friday"
+                style="@style/week_day_header"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="周五" />
+
+            <TextView
+                android:id="@+id/saturday"
+                style="@style/week_day_header"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="周六" />
+
+            <TextView
+                android:id="@+id/sunday"
+                style="@style/week_day_header"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="周日" />
+
+        </FrameLayout>
+    </view>
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:ta="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/blocks_scroll"
+        android:fadingEdge="none"
+        android:scrollbars="none"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <view
+            android:id="@+id/blocks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            class="net.basilwang.ui.widget.BlocksLayout"
+            android:background="@color/white"
+            ta:columns="7" >
+  
+            <view
+                android:id="@id/blocks_ruler"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                class="net.basilwang.ui.widget.TimeRulerView"
+                ta:dividerColor="#d9d9d9"
+                ta:endHour="23"
+                ta:headerWidth="46dip"
+                ta:horizontalDivider_avoidDuplicateWithSherlock="true"
+                ta:weekDayHeaderHeight="20dip"
+                ta:labelColor="#000000"
+                ta:labelPaddingLeft="5dip"
+                ta:labelTextSize="13sp"
+                ta:startHour="7" />
+
+            <view
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/horizontal_scroll"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:fadingEdge="none"
+                android:scrollbars="none"
+                class="net.basilwang.ui.widget.ObservableHorizontalScrollView" >
+
+                <FrameLayout
+                    android:id="@+id/blocks_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+                </FrameLayout>
+            </view>
+
+            <View
+                android:id="@id/blocks_now"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/now_bar" />
+        </view>
+    </ScrollView>
+
+</LinearLayout>

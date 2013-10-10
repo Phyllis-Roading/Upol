@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="notitle">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="main_tab_bottom">
+        <item name="android:textSize">@dimen/bottom_tab_font_size</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:background">@drawable/home_btn_bg</item>
+        <item name="android:paddingTop">@dimen/bottom_tab_padding_up</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:drawablePadding">@dimen/bottom_tab_padding_drawable</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+
+    <style name="LabelTextViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <!-- See comments for @dimen/list_section_divider_min_height -->
+        <item name="android:minHeight">@dimen/list_section_divider_min_height</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/small_label</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">8dip</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_up_dialog</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_down</item>
+    </style>
+
+    <style name="DialogSlideAnim" parent="@style/Theme.Sherlock">
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+    </style>
+
+    <style name="widget_list_item">
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+    </style>
+
+    <style name="prehoneycomb_widget_project" parent="widget_list_item">
+        <item name="android:typeface">sans</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginTop">1dip</item>
+        <item name="android:paddingLeft">5dip</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:lines">1</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="prehoneycomb_widget_description" parent="widget_list_item">
+        <item name="android:typeface">sans</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginTop">1dip</item>
+        <item name="android:paddingLeft">5dip</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:lines">1</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="Theme.MySherlock" parent="Theme.Sherlock">
+        <item name="actionModeCloseDrawable">@drawable/ic_menu_cancel_holo_dark</item>
+        <item name="android:actionModeCloseDrawable">@drawable/ic_menu_cancel_holo_dark</item>
+    </style>
+
+    <style name="week_day_header">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:paddingLeft">5dip</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:lines">1</item>
+        <item name="android:clickable">false</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Dialog_Fullscreen">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@style/Dialog_Anim</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+    </style>
+
+    <style name="Dialog_Anim">
+        <item name="android:windowEnterAnimation">@anim/fadding_in</item>
+        <item name="android:windowExitAnimation">@anim/fadding_out</item>
+    </style>
+
+</resources>

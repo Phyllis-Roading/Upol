@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
+    android:orientation="vertical"
+    android:layout_width="fill_parent"  
+    android:layout_height="fill_parent">
+    <TextView android:id="@+id/dayofweek" 
+        android:layout_width="match_parent" 
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="5dip"
+        android:textSize="16dip"
+        android:background="#ffd3d3d3"
+        android:textColor="#000000"/>  
+   
+    
+	<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/scrollView" 
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"		
+		android:background="#ffd3d3d3">
+		
+		<br.com.dina.ui.widget.UITableView android:id="@+id/tableView" style="@style/UITableView" >
+
+
+		</br.com.dina.ui.widget.UITableView>
+
+	</ScrollView>
+
+</LinearLayout> 
