@@ -32,11 +32,6 @@ public class SliderMenuFragment extends ListFragment{
 		this.menu=menu;
 	}
 	protected static int messageNum=0;
-	private int[] messages={0,R.drawable.message1,
-			R.drawable.message2,R.drawable.message3,
-			R.drawable.message4,R.drawable.message5,
-			R.drawable.message6};
-	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,7 +50,7 @@ public class SliderMenuFragment extends ListFragment{
 		String[] menuNames = getResources().getStringArray(R.array.menu_name);
 		SampleAdapter adapter = new SampleAdapter(getActivity());
 		for (int i = 0; i < menuNames.length; i++) {
-			adapter.add(new SampleItem(menuNames[i], getIconResc(i),getMessage_IconResc(i)));
+			adapter.add(new SampleItem(menuNames[i], getIconResc(i)));
 			setListAdapter(adapter);
 		}
 	}
@@ -73,29 +68,14 @@ public class SliderMenuFragment extends ListFragment{
 		return iconResc[position];
 
 	}
-	private int getMessage_IconResc(int position) {
-		int[] iconResc = {
-				0,
-				0, 
-				0,
-				0,
-				0,
-				messages[messageNum],
-				0,
-				0};
-		return iconResc[position];
-
-	}
 
 	private class SampleItem {
 		public String tag;
 		public int iconRes;
-		public int messageRes;
 
-		public SampleItem(String tag, int iconRes,int messageRes) {
+		public SampleItem(String tag, int iconRes) {
 			this.tag = tag;
 			this.iconRes = iconRes;
-			this.messageRes=messageRes;
 		}
 	}
 
@@ -116,9 +96,6 @@ public class SliderMenuFragment extends ListFragment{
 			TextView title = (TextView) convertView
 					.findViewById(R.id.row_title);
 			title.setText(getItem(position).tag);
-			ImageView message_icon = (ImageView) convertView
-					.findViewById(R.id.new_message_icon);
-			message_icon.setImageResource(getItem(position).messageRes);
 
 			return convertView;
 		}
