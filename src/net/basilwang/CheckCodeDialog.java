@@ -51,8 +51,6 @@ public class CheckCodeDialog extends SherlockActivity {
     public ProgressDialog getProgressBar() {
 		return progressBar;
 	}
-	//BroadcastReceiver mReceiver;
-    //Handler progressBarHandler=new Handler();
 	public void init() {
 		setContentView(R.layout.checkcode);
 		// 2012-10-25 basilwang make dialog full window
@@ -78,32 +76,6 @@ public class CheckCodeDialog extends SherlockActivity {
 	@Override
     protected void onResume() {
         super.onResume();
-//        IntentFilter intentFilter = new IntentFilter(
-//                "net.basilwang.intents.progress");
-//        mReceiver = new BroadcastReceiver() {
-//            @Override
-//            public void onReceive(Context context, Intent intent) {
-//                //extract our message from intent
-//                final Integer progress = intent.getIntExtra("progress",0);
-//                //log our message value
-//                Log.i(TAG, progress.toString());
-//                // Update the progress bar
-//  			      progressBarHandler.post(new Runnable() {
-//  				  public void run() {
-//
-//  				    progressBar.setProgress(progress);
-//					if(progress==100)
-//	  	            {	  	                	
-//	  	                progressBar.dismiss();
-//	  	                CheckCodeDialog.this.finish();
-//	  	            }
-//  				   }
-//  			      });
-//  			  
-//            }
-//        };
-//        //registering our receiver
-//        this.registerReceiver(mReceiver, intentFilter);
     }
     @Override
     protected void onPause() {
@@ -146,13 +118,13 @@ public class CheckCodeDialog extends SherlockActivity {
 				} else {
 					btnSave.setClickable(false);
 					AsyncTask<Integer, Integer, String> stask = null;
-					if (taskName.equals("curriculum")) {
-						stask = new CurriculumPreferenceTask(v.getContext());
-					} else if (taskName.equals("score")) {
-						stask = new ScorePreferenceTask(v.getContext());
-					} else {
-						return;
-					}
+//					if (taskName.equals("curriculum")) {
+//						stask = new CurriculumPreferenceTask(v.getContext());
+//					} else if (taskName.equals("score")) {
+//						stask = new ScorePreferenceTask(v.getContext());
+//					} else {
+//						return;
+//					}
 					
 					progressBar = new ProgressDialog(v.getContext());
 					progressBar.setCancelable(true);
@@ -163,7 +135,7 @@ public class CheckCodeDialog extends SherlockActivity {
 					progressBar.show();
 					
 					LogOnPreferenceTask task = new LogOnPreferenceTask(v
-							.getContext(), stask);
+							.getContext());
 					task.execute(account.getUserno(), account.getPassword(),
 							checkCode, String.valueOf(accountId));
 				}
@@ -184,10 +156,6 @@ public class CheckCodeDialog extends SherlockActivity {
 		return;
 	}
 	if (loadCheckCodeTask != null) {
-		// 2012-07-09 basilwang link to new context
-		// if ((loadCheckCodeTask = (LoadCheckCodeTask)
-		// getLastNonConfigurationInstance()) != null) {
-		// loadCheckCodeTask.setContext(this);
 		AsyncTask.Status diStatus = loadCheckCodeTask.getStatus();
 		if (diStatus != AsyncTask.Status.FINISHED) {
 			return;
