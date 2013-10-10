@@ -11,8 +11,6 @@ import net.basilwang.listener.AddSubMenuListener;
 import net.basilwang.listener.ShowTipListener;
 import net.basilwang.utils.PreferenceUtils;
 import net.basilwang.utils.TipUtils;
-import net.youmi.android.AdManager;
-import net.youmi.android.AdView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +24,6 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import net.basilwang.R;
 import br.com.dina.ui.model.BasicItem;
 import br.com.dina.ui.model.ViewItem;
 import br.com.dina.ui.widget.UITableView;
@@ -121,16 +118,6 @@ public class ScoreFragment extends SherlockFragment implements
 			Bundle savedInstanceState) {
 		showTipIfNecessary();
 		initView(inflater, container);
-		if (!Preferences.isAdClosed(this.getActivity())) {
-			// 应用Id 应用密码 广告请求间隔(s) 测试模式
-			AdManager.init(this.getActivity(), "2fc95b356bb979ae",
-					"8b94f727980f7158", 30, false);
-			LinearLayout adViewLayout = (LinearLayout) scoreView
-					.findViewById(R.id.adViewLayout);
-			adViewLayout.addView(new AdView(this.getActivity()),
-					new LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,
-							LinearLayout.LayoutParams.WRAP_CONTENT));
-		}
 		populateList(mTableView, scoreView);
 		return scoreView;
 	}
