@@ -41,18 +41,17 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 		OnItemClickListener {
 	View messageView;
 	private XListView mListView;
-	private ArrayList<String> items = new ArrayList<String>();
 	private Handler mHandler;
-	private int start = 0;
-	private static int refreshCnt = 0;
 	SampleAdapter adapter;
 	GetNotificationTask getNotifTask;
+	private String indexUrl;
+	private static int moreCount=0;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		indexUrl="http://xueli.upol.cn:9888/M4/upol/platform/zxgg/zxgg_01.jsp?pageInt=";
 		messageView = inflater.inflate(R.layout.message_list, null);
-		geneItems();
 		mListView = (XListView) messageView.findViewById(R.id.xListView);
 		mListView.setPullLoadEnable(true);
 		mListView.setOnItemClickListener(this);
@@ -66,13 +65,7 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 		adapter = new SampleAdapter(this.getActivity());
 		getNotifTask = new GetNotificationTask();
 		getNotifTask
-				.execute("http://xueli.upol.cn:9888/M4/upol/platform/zxgg/zxgg_01.jsp");
-	}
-
-	private void geneItems() {
-		for (int i = 0; i != 5; ++i) {
-			items.add("refresh cnt " + (++start));
-		}
+				.execute(indexUrl+1);
 	}
 
 	private void onLoad() {
@@ -89,9 +82,6 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 		mHandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				start = ++refreshCnt;
-				items.clear();
-				geneItems();
 				adapter.clear();
 				for (int i = 0; i < 1; i++) {
 					adapter.add(new SampleItem(
@@ -100,10 +90,6 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 							"2013-08-29", R.drawable.open));
 				}
 				mListView.setAdapter(adapter);
-				// mAdapter.notifyDataSetChanged();
-				// mAdapter = new ArrayAdapter<String>(XListViewActivity.this,
-				// R.layout.list_item, items);
-				// mListView.setAdapter(mAdapter);
 				onLoad();
 			}
 		}, 2000);
@@ -114,8 +100,9 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 		mHandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				geneItems();
 				adapter.notifyDataSetChanged();
+				moreCount++;
+				getNotifTask.execute(indexUrl+moreCount/2);
 				for (int i = 0; i < 1; i++) {
 					adapter.add(new SampleItem(
 							"关于2013年9月网络统考考生提前身份证验证的通知",
@@ -195,7 +182,6 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 				HttpResponse response = httpClient.execute(post);
 				if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 					result = EntityUtils.toString(response.getEntity());
-					// Log.v("tag", result);
 				}
 			} catch (ClientProtocolException e) {
 				e.printStackTrace();
