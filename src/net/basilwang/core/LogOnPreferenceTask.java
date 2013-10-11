@@ -10,6 +10,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.params.ClientPNames;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
@@ -55,9 +56,14 @@ public class LogOnPreferenceTask extends AsyncTask<String, Integer, Boolean> {
 		postParameters.add(new BasicNameValuePair("input_password", params[1]));
 		postParameters.add(new BasicNameValuePair("type", "STUDENT"));
 		postParameters.add(new BasicNameValuePair("rand", params[2]));
+		post.getParams().setParameter(ClientPNames.HANDLE_REDIRECTS, false);
 		try {
+
 			post.setEntity(new UrlEncodedFormEntity(postParameters));
 			HttpResponse httpResponse = httpClicent.execute(post);
+			String cookie = httpResponse.getFirstHeader("Set-Cookie")
+					.getValue();
+			Log.v("cookie", cookie);
 			Log.v("status", httpResponse.getStatusLine().getStatusCode() + "");
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
 				String result = EntityUtils.toString(httpResponse.getEntity());
@@ -78,7 +84,6 @@ public class LogOnPreferenceTask extends AsyncTask<String, Integer, Boolean> {
 
 	}
 
-	
 	// private Boolean HttpClient(String... params) {
 	// OnDownloadProgressListener listener = new OnDownloadProgressListener() {
 	//
