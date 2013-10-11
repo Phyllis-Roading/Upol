@@ -45,7 +45,7 @@
 			<intent-filter>
 				<action android:name="org.androidpn.client.NotificationService" />
 			</intent-filter>
-		</service>
+		</service>
         -->
 
 
@@ -118,19 +118,14 @@
             android:name="net.basilwang.StaticAttachmentActivity"
             android:theme="@style/Theme.MySherlock" >
             <intent-filter>
-                <action android:name="android.intent.action.DEFAULT" />
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.VIEW" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name="net.basilwang.SplashActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="net.basilwang.FragmentStatePagerSupport"
@@ -223,7 +218,7 @@
         <activity android:name="cn.sharesdk.onekeyshare.SharePage" >
         </activity>
         <activity
-            android:name="net.basilwang.MessageActivity"
+            android:name="net.upol.MessageActivity"
             android:label="@string/title_activity_message" >
         </activity>
     </application>

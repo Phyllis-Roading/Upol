@@ -23,7 +23,10 @@ import static net.basilwang.dao.Preferences.LOGON_PREFERENCES;
 import java.util.Calendar;
 import java.util.List;
 
+import net.basilwang.EditLogonPreferenceActivity;
+import net.basilwang.LogonPreferenceActivity;
 import net.basilwang.PreferenceFragmentPlugin.OnPreferenceAttachedListener;
+import net.basilwang.R;
 import net.basilwang.config.SAXParse;
 import net.basilwang.dao.AccountService;
 import net.basilwang.dao.SemesterService;
@@ -33,6 +36,7 @@ import net.basilwang.sever.Message;
 import net.basilwang.sever.MessageService;
 import net.basilwang.sever.RequestMessage;
 import net.basilwang.utils.NetworkUtils;
+import net.upol.MessageFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -56,7 +60,7 @@ import com.weibo.sdk.android.sso.SsoHandler;
 
 public class StaticAttachmentActivity extends BaseActivity implements
 		OnPreferenceAttachedListener, OnPreferenceChangeListener,
-		OnPreferenceClickListener{
+		OnPreferenceClickListener {
 	public StaticAttachmentActivity() {
 		super(R.string.changing_fragments);
 	}
@@ -68,7 +72,7 @@ public class StaticAttachmentActivity extends BaseActivity implements
 	// SubMenu subMenuWithoutNetwork;
 	private int accountId;
 	private AccountService accountService;
-	private Boolean isExiting=false;
+	private Boolean isExiting = false;
 	/**
 	 * SsoHandler 仅当sdk支持sso时有效，
 	 */
@@ -77,25 +81,25 @@ public class StaticAttachmentActivity extends BaseActivity implements
 	private SlidingMenu menu;
 	protected static int nuwMessages;
 	private String newSemesterBegin;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// setTheme(SampleList.THEME); //Used for theme switching in samples
 		super.onCreate(savedInstanceState);
-		requestMessages();//获取服务器端最新消�
-menu=new SlidingMenu(this);
+		requestMessages();// 获取服务器端最新消�
+		menu = new SlidingMenu(this);
 		setTitle(SAXParse.getTAConfiguration().getSelectedCollege().getName());
 		getSherlock().setContentView(R.layout.main_container);
 
 		accountService = new AccountService(this);
 		refreshTabBarTitle();
-		
+
 		// add slidingMenu
 		if (savedInstanceState != null)
 			mContent = getSupportFragmentManager().getFragment(
 					savedInstanceState, "mContent");
 		if (mContent == null)
-			mContent = new CurriculumViewPagerFragment();
+			mContent = new MessageFragment();
 
 		// set the Above View
 		setContentView(R.layout.main_container);
@@ -105,15 +109,13 @@ menu=new SlidingMenu(this);
 		// set the Behind View
 		setBehindContentView(R.layout.menu_frame);
 		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.menu_frame, new SliderMenuFragment(menu)).commit();
+				.replace(R.id.menu_frame, new SliderMenuFragment(menu))
+				.commit();
 
 		// customize the SlidingMenu
 		getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
 		// add slidingmenu over
 
-		
-
-		
 		int flag = getIntent().getIntExtra("flag", 0);
 		if (flag == SliderMenuFragment.EXIT_APPLICATION) {
 			isExiting = true;
@@ -121,54 +123,51 @@ menu=new SlidingMenu(this);
 		} else {
 			isExiting = false;
 		}
-		
+
 		newUserOrNot();
 
 	}
 
-	//联网登录时获取最新推送消息，插入数据�
+	// 联网登录时获取最新推送消息，插入数据�
 	private void requestMessages() {
-		MessageService messageService=new MessageService(this);
-		try{
-			AccountService service=new AccountService(this);
-			Account account=service.getAccounts().get(0);
+		MessageService messageService = new MessageService(this);
+		try {
+			AccountService service = new AccountService(this);
+			Account account = service.getAccounts().get(0);
 			Log.v("1231321313213213text", account.getUserno());
-			RequestMessage request=new RequestMessage();
+			RequestMessage request = new RequestMessage();
 			request.setResult(account.getUserno());
-			Message message=new Message();
+			Message message = new Message();
 			message.setContent(request.getResult());
-			nuwMessages=message.getContent().size();
+			nuwMessages = message.getContent().size();
 			messageService.save(message);
-			//判断本条消息是否修改开学日�
-			for(String m:message.getContent()){
-				if(m.substring(10, 26).equals("系统已自动将您的开学日期设置为：")){
-					newSemesterBegin=m;
+			// 判断本条消息是否修改开学日�
+			for (String m : message.getContent()) {
+				if (m.substring(10, 26).equals("系统已自动将您的开学日期设置为：")) {
+					newSemesterBegin = m;
 					updateSemesterBegin();
 				}
 			}
-		}catch(Exception e){
-			
+		} catch (Exception e) {
+
 		}
 	}
-	
-	//根据服务器端的信息修改开学日�
+
+	// 根据服务器端的信息修改开学日�
 	private void updateSemesterBegin() {
-		Calendar cal=Calendar.getInstance();
-		String sYear=newSemesterBegin.substring(26, 30);
-		String sMonth=newSemesterBegin.substring(31, 33);
-		String sDay=newSemesterBegin.substring(34, 36);
-		int iYear=Integer.parseInt(sYear);
-		int iMonth=Integer.parseInt(sMonth)-1;
-		int iDay=Integer.parseInt(sDay);
+		Calendar cal = Calendar.getInstance();
+		String sYear = newSemesterBegin.substring(26, 30);
+		String sMonth = newSemesterBegin.substring(31, 33);
+		String sDay = newSemesterBegin.substring(34, 36);
+		int iYear = Integer.parseInt(sYear);
+		int iMonth = Integer.parseInt(sMonth) - 1;
+		int iDay = Integer.parseInt(sDay);
 		cal.set(iYear, iMonth, iDay);
-		Semester semester=new Semester();
+		Semester semester = new Semester();
 		semester.setBeginDate(cal.getTime().getTime());
-		SemesterService service=new SemesterService(this);
+		SemesterService service = new SemesterService(this);
 		service.updateBeginDataOfSemester(semester);
 	}
-
-		
-
 
 	/**
 	 * If this is a new user,please add account
@@ -230,7 +229,6 @@ menu=new SlidingMenu(this);
 		return super.onOptionsItemSelected(item);
 	}
 
-
 	@Override
 	public boolean onPreferenceChange(Preference arg0, Object arg1) {
 		return false;
@@ -254,7 +252,6 @@ menu=new SlidingMenu(this);
 			logonPreference = (PreferenceCategory) root
 					.findPreference(LOGON_PREFERENCES);
 
-
 			reloadData(logonPreference, logonAddPreference,
 					root.getPreferenceManager());
 		}
@@ -277,7 +274,6 @@ menu=new SlidingMenu(this);
 		}
 		return true;
 	}
-
 
 	private void refreshTabBarTitle() {
 		accountId = PreferenceManager.getDefaultSharedPreferences(this).getInt(
@@ -336,7 +332,6 @@ menu=new SlidingMenu(this);
 
 	}
 
-
 	private Exit exit = new Exit();
 
 	@Override
@@ -386,7 +381,6 @@ menu=new SlidingMenu(this);
 				.replace(R.id.mainContainer, fragment).commit();
 		getSlidingMenu().showContent();
 	}
-	
 
 	public void exit() {
 		StaticAttachmentActivity.this.finish();

@@ -1,31 +1,35 @@
-package net.basilwang;
+package net.upol;
 
-import view.XListView;
+import net.basilwang.R;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class TeachPlanFragment extends Fragment {
+public class TeachPlanFragment extends ListFragment {
 
 	View planView;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		planView = inflater.inflate(R.layout.message_list, null);
-		XListView planList = (XListView) planView.findViewById(R.id.xListView);
+		planView = inflater.inflate(R.layout.teach_plan_list, null);
+		initAdapter();
+		return planView;
+	}
+
+	private void initAdapter() {
 		SampleAdapter adapter = new SampleAdapter(this.getActivity());
 		for (int i = 0; i < 4; i++) {
 			adapter.add(new SampleItem("(030103)有机化学", "专业基础课", "学分:4",
 					"学时:11", "学期:1", "未选", "通过"));
+			setListAdapter(adapter);
 		}
-		planList.setAdapter(adapter);
-		return planView;
+
 	}
 
 	private class SampleItem {

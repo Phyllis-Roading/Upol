@@ -1625,20 +1625,21 @@ containing a value of this type.
         public static final int splash=0x7f030040;
         public static final int synchronize_editor=0x7f030041;
         public static final int synchronize_settings=0x7f030042;
-        public static final int teach_plan_list_item=0x7f030043;
-        public static final int tip_view=0x7f030044;
-        public static final int uitableview_activity=0x7f030045;
-        public static final int week_view_unlock=0x7f030046;
-        public static final int weekview=0x7f030047;
-        public static final int weekview_fragment=0x7f030048;
-        public static final int widget_2x2=0x7f030049;
-        public static final int widget_list_item=0x7f03004a;
-        public static final int widget_list_item_2x2=0x7f03004b;
-        public static final int widget_loading=0x7f03004c;
-        public static final int widget_pre_honeycomb_4x2=0x7f03004d;
-        public static final int xlistview_footer=0x7f03004e;
-        public static final int xlistview_header=0x7f03004f;
-        public static final int youmitoolkit=0x7f030050;
+        public static final int teach_plan_list=0x7f030043;
+        public static final int teach_plan_list_item=0x7f030044;
+        public static final int tip_view=0x7f030045;
+        public static final int uitableview_activity=0x7f030046;
+        public static final int week_view_unlock=0x7f030047;
+        public static final int weekview=0x7f030048;
+        public static final int weekview_fragment=0x7f030049;
+        public static final int widget_2x2=0x7f03004a;
+        public static final int widget_list_item=0x7f03004b;
+        public static final int widget_list_item_2x2=0x7f03004c;
+        public static final int widget_loading=0x7f03004d;
+        public static final int widget_pre_honeycomb_4x2=0x7f03004e;
+        public static final int xlistview_footer=0x7f03004f;
+        public static final int xlistview_header=0x7f030050;
+        public static final int youmitoolkit=0x7f030051;
     }
     public static final class menu {
         public static final int main=0x7f0f0000;

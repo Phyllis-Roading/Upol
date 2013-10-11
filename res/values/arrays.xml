@@ -127,9 +127,9 @@
       <string-array name="menu_name">
         <item>我的助手 </item>
         <item>最新公告 </item>
-        <item>教育计划</item>
-        <item>课表</item>
-        <item>成绩查询</item>
+        <item>我的成绩</item>
+        <item>我的课表</item>
+        <item>教学计划</item>
         <item>行为统计</item>
         <item>考试安排</item>
         <item>退出</item>

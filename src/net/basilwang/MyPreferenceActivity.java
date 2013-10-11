@@ -14,7 +14,6 @@ import static net.basilwang.dao.Preferences.SHAREONWEIBO;
 import static net.basilwang.dao.Preferences.WEEKVIEW_ENABLED;
 
 import java.util.List;
-
 import net.basilwang.config.SAXParse;
 import net.basilwang.dao.AccountService;
 import net.basilwang.dao.Preferences;
@@ -95,9 +94,6 @@ public class MyPreferenceActivity extends SherlockPreferenceActivity implements
 		cemesterEndPreference
 				.setOnPreferenceClickListener(new DateClickListener(mDueTime,
 						cemesterEndPreference));
-		
-        
-
 
 		checkNetwork();
 		reloadData();
@@ -105,7 +101,6 @@ public class MyPreferenceActivity extends SherlockPreferenceActivity implements
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
 
 		subMenuForNetwork = menu.addSubMenu(R.string.networkavailable);
 		subMenuForNetwork.add(0, R.style.Theme_Sherlock, 0,

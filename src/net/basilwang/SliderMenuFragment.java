@@ -1,5 +1,8 @@
 package net.basilwang;
 
+import net.basilwang.R;
+import net.upol.MessageFragment;
+import net.upol.TeachPlanFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class SliderMenuFragment extends ListFragment {
@@ -89,16 +93,13 @@ public class SliderMenuFragment extends ListFragment {
 			newContent = new MessageFragment();
 			break;
 		case 2:
-			newContent = new TeachPlanFragment();
 			break;
 		case 3:
-			newContent = new DownloadCurriculumFragment();
 			break;
 		case 4:
-			newContent = new PreferenceFragmentPlugin();
+			newContent = new TeachPlanFragment();
 			break;
 		case 5:
-			newContent = new CurriculumViewPagerFragment();
 			break;
 		case 6:
 			break;

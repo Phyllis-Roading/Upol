@@ -1,9 +1,7 @@
 package net.basilwang;
 
 import static net.basilwang.dao.Preferences.LOGON_ACCOUNT_ID;
-
 import java.util.List;
-
 import net.basilwang.dao.CurriculumService;
 import net.basilwang.entity.Curriculum;
 import android.content.Context;

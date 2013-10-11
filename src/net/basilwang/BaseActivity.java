@@ -1,5 +1,6 @@
 package net.basilwang;
 
+import net.basilwang.R;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
