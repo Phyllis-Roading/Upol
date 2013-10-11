@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class SliderMenuFragment extends ListFragment {
@@ -90,7 +89,7 @@ public class SliderMenuFragment extends ListFragment {
 			newContent = new MessageFragment();
 			break;
 		case 2:
-			newContent = new ScoreFragment();
+			newContent = new TeachPlanFragment();
 			break;
 		case 3:
 			newContent = new DownloadCurriculumFragment();

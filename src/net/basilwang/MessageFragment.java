@@ -6,17 +6,21 @@ import java.util.ArrayList;
 import view.XListView;
 import view.XListView.IXListViewListener;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MessageFragment extends Fragment implements IXListViewListener {
+public class MessageFragment extends Fragment implements IXListViewListener,
+		OnItemClickListener {
 	View messageView;
 	private XListView mListView;
 	private ArrayList<String> items = new ArrayList<String>();
@@ -31,11 +35,11 @@ public class MessageFragment extends Fragment implements IXListViewListener {
 		geneItems();
 		mListView = (XListView) messageView.findViewById(R.id.xListView);
 		mListView.setPullLoadEnable(true);
+		mListView.setOnItemClickListener(this);
 		SampleAdapter adapter = new SampleAdapter(this.getActivity());
 		for (int i = 0; i < 3; i++) {
-			adapter.add(new SampleItem(
-					"����2013��9������ͳ��������ǰ���֤��֤��֪ͨ", "2013-08-28",
-					R.drawable.open));
+			adapter.add(new SampleItem("关于2013年9月网络统考考生提前身份证验证的通知",
+					"2013-08-28", R.drawable.open));
 		}
 		mListView.setAdapter(adapter);
 		mListView.setXListViewListener(this);
@@ -120,6 +124,13 @@ public class MessageFragment extends Fragment implements IXListViewListener {
 
 			return convertView;
 		}
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		Intent i = new Intent(getActivity(), MessageActivity.class);
+		i.putExtra("position", arg2);
+		startActivity(i);
 	}
 
 }

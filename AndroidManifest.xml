@@ -45,7 +45,7 @@
 			<intent-filter>
 				<action android:name="org.androidpn.client.NotificationService" />
 			</intent-filter>
-		</service>
+		</service>
         -->
 
 
@@ -206,18 +206,26 @@
             android:name="YOUMI_CHANNEL"
             android:value="10070" >
         </meta-data>
-        <activity android:name="cn.sharesdk.framework.AuthorizeActivity"></activity>
-        <activity 
+
+        <activity android:name="cn.sharesdk.framework.AuthorizeActivity" >
+        </activity>
+        <activity
             android:name="cn.sharesdk.demo.wxapi.WXEntryActivity"
             android:exported="true"
-  			android:screenOrientation="portrait"></activity>
-
+            android:screenOrientation="portrait" >
+        </activity>
         <activity
             android:name="net.basilwang.MessageFragment"
             android:label="@string/title_activity_message" >
         </activity>
-        <activity android:name="cn.sharesdk.onekeyshare.ShareAllGird"></activity>
-        <activity android:name="cn.sharesdk.onekeyshare.SharePage"></activity>
+        <activity android:name="cn.sharesdk.onekeyshare.ShareAllGird" >
+        </activity>
+        <activity android:name="cn.sharesdk.onekeyshare.SharePage" >
+        </activity>
+        <activity
+            android:name="net.basilwang.MessageActivity"
+            android:label="@string/title_activity_message" >
+        </activity>
     </application>
 
 </manifest>

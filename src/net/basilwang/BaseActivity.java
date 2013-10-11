@@ -21,6 +21,7 @@ public class BaseActivity extends SlidingFragmentActivity {
 		super.onCreate(savedInstanceState);
 
 		setTitle(mTitleRes);
+		getSupportActionBar().setIcon(R.drawable.menu_slide);
 
 		// set the Behind View
 		setBehindContentView(R.layout.menu_frame);
