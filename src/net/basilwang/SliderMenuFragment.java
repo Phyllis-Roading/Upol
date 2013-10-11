@@ -1,6 +1,5 @@
 package net.basilwang;
 
-import net.basilwang.R;
 import net.upol.MessageFragment;
 import net.upol.TeachPlanFragment;
 import android.content.Context;
@@ -95,6 +94,7 @@ public class SliderMenuFragment extends ListFragment {
 		case 2:
 			break;
 		case 3:
+			newContent = new DownloadCurriculumFragment();
 			break;
 		case 4:
 			newContent = new TeachPlanFragment();

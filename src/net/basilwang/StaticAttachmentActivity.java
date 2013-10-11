@@ -23,10 +23,7 @@ import static net.basilwang.dao.Preferences.LOGON_PREFERENCES;
 import java.util.Calendar;
 import java.util.List;
 
-import net.basilwang.EditLogonPreferenceActivity;
-import net.basilwang.LogonPreferenceActivity;
 import net.basilwang.PreferenceFragmentPlugin.OnPreferenceAttachedListener;
-import net.basilwang.R;
 import net.basilwang.config.SAXParse;
 import net.basilwang.dao.AccountService;
 import net.basilwang.dao.SemesterService;
@@ -56,7 +53,6 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.SubMenu;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.weibo.sdk.android.sso.SsoHandler;
 
 public class StaticAttachmentActivity extends BaseActivity implements
 		OnPreferenceAttachedListener, OnPreferenceChangeListener,
@@ -76,7 +72,6 @@ public class StaticAttachmentActivity extends BaseActivity implements
 	/**
 	 * SsoHandler 仅当sdk支持sso时有效，
 	 */
-	SsoHandler mSsoHandler;
 	private Fragment mContent;
 	private SlidingMenu menu;
 	protected static int nuwMessages;
