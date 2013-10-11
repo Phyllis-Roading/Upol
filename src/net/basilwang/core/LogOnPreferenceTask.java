@@ -78,6 +78,7 @@ public class LogOnPreferenceTask extends AsyncTask<String, Integer, Boolean> {
 
 	}
 
+	
 	// private Boolean HttpClient(String... params) {
 	// OnDownloadProgressListener listener = new OnDownloadProgressListener() {
 	//
