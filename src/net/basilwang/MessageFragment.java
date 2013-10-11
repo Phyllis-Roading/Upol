@@ -1,107 +1,125 @@
 package net.basilwang;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
-
-import net.basilwang.sever.MessageService;
-
-import br.com.dina.ui.widget.UITableView;
-import br.com.dina.ui.widget.UITableView.ClickListener;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
+import view.XListView;
+import view.XListView.IXListViewListener;
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-public class MessageFragment extends Fragment {
-
+public class MessageFragment extends Fragment implements IXListViewListener {
 	View messageView;
-	UITableView messages;
-	List<String> dbMessages=new ArrayList<String>();
-	
+	private XListView mListView;
+	private ArrayList<String> items = new ArrayList<String>();
+	private Handler mHandler;
+	private int start = 0;
+	private static int refreshCnt = 0;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		SliderMenuFragment.messageNum=0;
-		messageView=inflater.inflate(
-				R.layout.messages_frament, container, false);
-		messages=(UITableView)messageView.findViewById(R.id.message_fragment);
-		requestMessages();
-		createMessages();
+		messageView = inflater.inflate(R.layout.message_list, null);
+		geneItems();
+		mListView = (XListView) messageView.findViewById(R.id.xListView);
+		mListView.setPullLoadEnable(true);
+		SampleAdapter adapter = new SampleAdapter(this.getActivity());
+		for (int i = 0; i < 3; i++) {
+			adapter.add(new SampleItem(
+					"����2013��9������ͳ��������ǰ���֤��֤��֪ͨ", "2013-08-28",
+					R.drawable.open));
+		}
+		mListView.setAdapter(adapter);
+		mListView.setXListViewListener(this);
+		mHandler = new Handler();
 		return messageView;
 	}
-	
-	//获取本地数据库中的信息
-	public void requestMessages(){
-		MessageService messageService=new MessageService(this.getActivity());
-		dbMessages=messageService.getMessages();
-	}
-	
-	public void createMessages(){
-		messages.clear();
-		CustomClickListener listener = new CustomClickListener();//点击删除消息
-    	messages.setClickListener(listener);
-    	try{
-    		if(dbMessages.size()==0){
-    			messages.addBasicItem("没有新消息");
-    		}else{
-    			for(String m:dbMessages){
-    				String title=m.substring(10, m.length());
-    				String summary=m.substring(0, 10);
-    				messages.addBasicItem(title, summary);
-//    				messages.addBasicItem(m);
-    			}
-    		}
-    	}catch(Exception e){
-    		
-    	}
-		messages.commit();
+
+	private void geneItems() {
+		for (int i = 0; i != 5; ++i) {
+			items.add("refresh cnt " + (++start));
+		}
 	}
 
-	private class CustomClickListener implements ClickListener {
-
-		@Override
-		public void onClick(int index) {
-			try{
-				String summery=dbMessages.get(index).substring(10, dbMessages.get(index).length());
-				dialogMessage(summery,index);
-			}catch(Exception e){
-				
-			}
-        }
+	private void onLoad() {
+		mListView.stopRefresh();
+		mListView.stopLoadMore();
+		SimpleDateFormat formatter = new SimpleDateFormat("MM-dd   HH:mm");
+		Date curDate = new Date(System.currentTimeMillis());
+		String str = formatter.format(curDate);
+		mListView.setRefreshTime(str);
 	}
-	public void deleteMessage(int index){
-		MessageService service=new MessageService(this.getActivity());
-		service.delete(dbMessages.get(index));
-		dbMessages.remove(index);
-	}
-	public void dialogMessage(String message,final int index){
-		AlertDialog.Builder builder = new Builder(this.getActivity());
-		builder.setMessage(message);
-		builder.setTitle("消息内容");
-		builder.setPositiveButton("返回", new OnClickListener(){
 
+	@Override
+	public void onRefresh() {
+		mHandler.postDelayed(new Runnable() {
 			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				// TODO Auto-generated method stub
-				dialog.dismiss();
+			public void run() {
+				start = ++refreshCnt;
+				items.clear();
+				geneItems();
+				// mAdapter.notifyDataSetChanged();
+				// mAdapter = new ArrayAdapter<String>(XListViewActivity.this,
+				// R.layout.list_item, items);
+				// mListView.setAdapter(mAdapter);
+				onLoad();
 			}
-			
-		});
-		builder.setNegativeButton("删除", new OnClickListener(){
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				// TODO Auto-generated method stub
-				deleteMessage(index);
-				createMessages();
-				dialog.dismiss();
-			}
-		});
-		builder.create().show();
+		}, 2000);
 	}
+
+	@Override
+	public void onLoadMore() {
+		mHandler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				geneItems();
+				// mAdapter.notifyDataSetChanged();
+				onLoad();
+			}
+		}, 2000);
+	}
+
+	private class SampleItem {
+		public String message;
+		public String date;
+		int open;
+
+		public SampleItem(String message, String date, int open) {
+			this.message = message;
+			this.date = date;
+			this.open = open;
+		}
+	}
+
+	public class SampleAdapter extends ArrayAdapter<SampleItem> {
+
+		public SampleAdapter(Context context) {
+			super(context, 0);
+		}
+
+		public View getView(int position, View convertView, ViewGroup parent) {
+			if (convertView == null) {
+				convertView = LayoutInflater.from(getContext()).inflate(
+						R.layout.message_list_item, null);
+			}
+			TextView message = (TextView) convertView
+					.findViewById(R.id.message);
+			message.setText(getItem(position).message);
+			TextView date = (TextView) convertView.findViewById(R.id.date);
+			date.setText(getItem(position).date);
+			ImageView open = (ImageView) convertView.findViewById(R.id.open);
+			open.setBackgroundResource(getItem(position).open);
+
+			return convertView;
+		}
+	}
+
 }

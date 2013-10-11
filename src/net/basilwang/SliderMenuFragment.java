@@ -1,52 +1,38 @@
 package net.basilwang;
 
-import java.util.HashMap;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Handler.Callback;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
-public class SliderMenuFragment extends ListFragment{
+public class SliderMenuFragment extends ListFragment {
 
-	public static final int  EXIT_APPLICATION = 0x0001; 
+	public static final int EXIT_APPLICATION = 0x0001;
 	private SlidingMenu menu;
-	private Handler handler;
-	
+
 	public SliderMenuFragment(SlidingMenu menu) {
-		this.menu=menu;
+		this.menu = menu;
 	}
-	protected static int messageNum=0;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {	
+			Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.list, null);
 	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		if(StaticAttachmentActivity.nuwMessages<6){
-			messageNum=StaticAttachmentActivity.nuwMessages;
-		}else{
-			messageNum=6;
-		}
 		String[] menuNames = getResources().getStringArray(R.array.menu_name);
 		SampleAdapter adapter = new SampleAdapter(getActivity());
 		for (int i = 0; i < menuNames.length; i++) {
@@ -56,15 +42,9 @@ public class SliderMenuFragment extends ListFragment{
 	}
 
 	private int getIconResc(int position) {
-		int[] iconResc = {
-				R.drawable.admin,
-				R.drawable.curriculum, 
-				R.drawable.mygrade,
-				R.drawable.downloadc,
-				R.drawable.set,
-				R.drawable.message,
-				R.drawable.shared,
-				R.drawable.exit };
+		int[] iconResc = { R.drawable.admin, R.drawable.curriculum,
+				R.drawable.mygrade, R.drawable.downloadc, R.drawable.set,
+				R.drawable.message, R.drawable.shared, R.drawable.exit };
 		return iconResc[position];
 
 	}
@@ -106,8 +86,8 @@ public class SliderMenuFragment extends ListFragment{
 	public void onListItemClick(ListView lv, View v, int position, long id) {
 		Fragment newContent = null;
 		switch (position) {
-	    case 1:
-			newContent = new CurriculumViewPagerFragment();
+		case 1:
+			newContent = new MessageFragment();
 			break;
 		case 2:
 			newContent = new ScoreFragment();
@@ -115,19 +95,21 @@ public class SliderMenuFragment extends ListFragment{
 		case 3:
 			newContent = new DownloadCurriculumFragment();
 			break;
-		case 4:newContent = new PreferenceFragmentPlugin();
-		    break;
-		case 5:newContent = new MessageFragment();
+		case 4:
+			newContent = new PreferenceFragmentPlugin();
+			break;
+		case 5:
+			newContent = new CurriculumViewPagerFragment();
 			break;
 		case 6:
 			break;
-		case 7:exit();
+		case 7:
+			exit();
 			break;
 		}
 		if (newContent != null)
 			switchFragment(newContent);
 	}
-	
 
 	// the meat of switching the above fragment
 	private void switchFragment(Fragment fragment) {
@@ -138,16 +120,15 @@ public class SliderMenuFragment extends ListFragment{
 			fca.switchContent(fragment);
 		}
 	}
-	public void exit(){
-		Intent mIntent = new Intent();  
-        mIntent.setClass(this.getActivity(),StaticAttachmentActivity.class);  
-        //这里设置flag还是比较重要�
-        mIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  
-        //发出退出程序指�
-        mIntent.putExtra("flag", EXIT_APPLICATION);  
-        startActivity(mIntent); 
+
+	public void exit() {
+		Intent mIntent = new Intent();
+		mIntent.setClass(this.getActivity(), StaticAttachmentActivity.class);
+		// 这里设置flag还是比较重要�
+		mIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		// 发出退出程序指�
+		mIntent.putExtra("flag", EXIT_APPLICATION);
+		startActivity(mIntent);
 	}
-
-
 
 }

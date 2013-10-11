@@ -126,12 +126,12 @@
     
       <string-array name="menu_name">
         <item>我的助手 </item>
+        <item>最新公告 </item>
+        <item>教育计划</item>
         <item>课表</item>
-        <item>成绩</item>
-        <item>下课表</item>
-        <item>设置 </item>
-        <item>消息中心</item>
-        <item>分享给好友</item>
+        <item>成绩查询</item>
+        <item>行为统计</item>
+        <item>考试安排</item>
         <item>退出</item>
         
     </string-array>
