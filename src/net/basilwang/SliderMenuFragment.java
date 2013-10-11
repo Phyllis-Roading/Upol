@@ -2,6 +2,7 @@ package net.basilwang;
 
 import net.basilwang.R;
 import net.upol.MessageFragment;
+import net.upol.MyScoreFragement;
 import net.upol.TeachPlanFragment;
 import android.content.Context;
 import android.content.Intent;
@@ -93,6 +94,7 @@ public class SliderMenuFragment extends ListFragment {
 			newContent = new MessageFragment();
 			break;
 		case 2:
+			newContent=new MyScoreFragement();
 			break;
 		case 3:
 			break;

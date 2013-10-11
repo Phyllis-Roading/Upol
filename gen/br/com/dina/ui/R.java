@@ -49,12 +49,12 @@ public final class R {
 		public static final int viewsContainer = 0x7f07005d;
 	}
 	public static final class layout {
-		public static final int list_container = 0x7f03002a;
-		public static final int list_item_bottom = 0x7f03002b;
-		public static final int list_item_middle = 0x7f03002c;
-		public static final int list_item_single = 0x7f03002d;
-		public static final int list_item_top = 0x7f03002e;
-		public static final int uitableview_activity = 0x7f030046;
+		public static final int list_container = 0x7f030029;
+		public static final int list_item_bottom = 0x7f03002a;
+		public static final int list_item_middle = 0x7f03002b;
+		public static final int list_item_single = 0x7f03002c;
+		public static final int list_item_top = 0x7f03002d;
+		public static final int uitableview_activity = 0x7f030047;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f0c000e;
