@@ -323,7 +323,6 @@ public class CurriculumViewPagerFragment extends SherlockFragment implements
 					getResources().getString(R.string.norecord));
 		} else {
 			for (Curriculum c : curriculumList) {
-				addViewItem(mTableView, mInflater, c.getRawInfo());
 			}
 		}
 	}

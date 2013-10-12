@@ -101,18 +101,11 @@ public class BlocksActivity extends Activity implements  View.OnClickListener {
         for(Curriculum c : curriculumList)
         {
 
-            Integer column = c.getDayOfWeek();
-            column= (column - 1 + 7 )% 7;
-            Log.v("test", "column is"+ column);
 
             final String blockId = String.valueOf(c.getId());
             final String title = c.getName();
-            final int start=c.getCurriculumIndex();
-            final int end = c.getCurriculumIndex()+c.getTimeSpan();
             final boolean containsStarred = true;
 
-            final BlockView blockView = new BlockView(this, blockId, title, start, end,
-                    containsStarred, column);
 
 //            final int sessionsCount = cursor.getInt(BlocksQuery.SESSIONS_COUNT);
 //            if (sessionsCount > 0) {
@@ -125,7 +118,6 @@ public class BlocksActivity extends Activity implements  View.OnClickListener {
 //                buttonDrawable.getDrawable(2).setAlpha(DISABLED_BLOCK_ALPHA);
 //            }
 
-            mBlocks.addBlock(blockView);
         }
         //updateNowView(true);
         //mBlocks.requestLayout();

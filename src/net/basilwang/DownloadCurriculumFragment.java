@@ -34,6 +34,8 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.view.ActionMode;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.SubMenu;
 
 public class DownloadCurriculumFragment extends SherlockFragment implements
 		ActionModeListener, AddSubMenuListener, ShowTipListener {
@@ -67,22 +69,19 @@ public class DownloadCurriculumFragment extends SherlockFragment implements
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		AddSubMenu subMenu = new AddSubMenu(menu, getActivity(), this);
-		subMenu.setTipPhotoAndPreferKey(R.drawable.curriculumdownload_tip,
-				Preferences.CURRICULUM_DOWNLOAD_TIP);
-		subMenu.setSubMenuItemListener(new OnItemSelectedListenerImpl(),
-				new View.OnClickListener() {
-
-					public void onClick(View v) {
-
-						Intent i = new Intent(v.getContext(),
-								CheckCodeDialog.class);
-						i.putExtra("task", "curriculum");
-						startActivityForResult(i, 0x1);
-					}
-				});
+		SubMenu sub = menu.addSubMenu("下载设置");
+		sub.setIcon(R.drawable.btn_download_setting);
+		sub.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
 		super.onCreateOptionsMenu(menu, inflater);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent i = new Intent(getActivity(), CheckCodeDialog.class);
+		i.putExtra("task", "curriculum");
+		startActivityForResult(i, 0x1);
+		return super.onOptionsItemSelected(item);
 	}
 
 	public int getSpinnerDefaultPosition() {

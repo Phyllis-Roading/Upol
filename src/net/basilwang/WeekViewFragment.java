@@ -94,17 +94,11 @@ public class WeekViewFragment extends SherlockFragment implements
 		Log.v(TAG, "curriculumList length is" + curriculumList.size());
 		for (Curriculum c : curriculumList) {
 
-			Integer column = c.getDayOfWeek() - 1;
-			Log.v(TAG, "column is" + column);
 
 			final String blockId = String.valueOf(c.getId());
 			final String title = c.getName();
-			final int start = c.getCurriculumIndex();
-			final int end = c.getCurriculumIndex() + c.getTimeSpan();
 			final boolean containsStarred = true;
 
-			final BlockView blockView = new BlockView(this.getActivity(),
-					blockId, title, start, end, containsStarred, column);
 
 			// final int sessionsCount =
 			// cursor.getInt(BlocksQuery.SESSIONS_COUNT);
@@ -119,7 +113,6 @@ public class WeekViewFragment extends SherlockFragment implements
 			// buttonDrawable.getDrawable(2).setAlpha(DISABLED_BLOCK_ALPHA);
 			// }
 
-			mBlocks.addBlock(blockView);
 		}
 		return v;
 	}

@@ -77,18 +77,16 @@ public class ScoreFragment extends SherlockFragment implements
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		AddSubMenu subMeun = new AddSubMenu(menu, getActivity(), this);
+		AddSubMenu subMeun = new AddSubMenu(menu, getActivity());
 		subMeun.setTipPhotoAndPreferKey(R.drawable.curriculumdownload_tip,
 				Preferences.SOCRE_DOWNLOAD_TIP);
-		subMeun.setSubMenuItemListener(new OnItemSelectedListenerImpl(),
-				new View.OnClickListener() {
-					public void onClick(View v) {
-						Intent i = new Intent(v.getContext(),
-								CheckCodeDialog.class);
-						i.putExtra("task", "score");
-						startActivityForResult(i, 0x1);
-					}
-				});
+		subMeun.setSubMenuItemListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent i = new Intent(v.getContext(), CheckCodeDialog.class);
+				i.putExtra("task", "score");
+				startActivityForResult(i, 0x1);
+			}
+		});
 
 		super.onCreateOptionsMenu(menu, inflater);
 	}

@@ -34,15 +34,15 @@ public class FilterCurriculums {
 
 	private List<Curriculum> getModifiedCurriculumList(Curriculum c) {
 		String[] names = removeBlankSemicolon(c.getName());
-		String[] rawInfos = c.getRawInfo().split("\\;");
-		String[] intervalTypes = c.getIntervalType().split("\\|");
-		String[] semesterPeriods = c.getSemesterPeriod().split("\\|");
+//		String[] rawInfos = c.getRawInfo().split("\\;");
+//		String[] intervalTypes = c.getIntervalType().split("\\|");
+//		String[] semesterPeriods = c.getSemesterPeriod().split("\\|");
 		List<Curriculum> list = new ArrayList<Curriculum>(names.length);
 
 		for (int i = 0; i < names.length; i++) {
-			Curriculum temp = new Curriculum(names[i], rawInfos[i],
-					semesterPeriods[i], intervalTypes[i]);
-			list.add(temp);
+//			Curriculum temp = new Curriculum(names[i], rawInfos[i],
+//					semesterPeriods[i], intervalTypes[i]);
+//			list.add(temp);
 		}
 
 		return list;
@@ -70,10 +70,10 @@ public class FilterCurriculums {
 		int num = 0;
 		while (num < modifiedCurriculums.size()) {
 			Curriculum temp = modifiedCurriculums.get(num);
-			if (temp.getIntervalType().equals(weekMark) == true) {
-				modifiedCurriculums.remove(num);
-				continue;
-			}
+////			if (temp.getIntervalType().equals(weekMark) == true) {
+//				modifiedCurriculums.remove(num);
+//				continue;
+//			}
 			num++;
 		}
 		setCurriculumProerty(c, modifiedCurriculums);
@@ -81,9 +81,9 @@ public class FilterCurriculums {
 
 	public void setCurriculumProerty(Curriculum c, List<Curriculum> list) {
 		c.setName(getCuriiculumNameByList(list));
-		c.setRawInfo(getCurriculumRawInfoByList(list));
-		c.setIntervalType(getCurriculumIntervalTypeByList(list));
-		c.setSemesterPeriod(getCurriculumSemesterPeriodByList(list));
+//		c.setRawInfo(getCurriculumRawInfoByList(list));
+//		c.setIntervalType(getCurriculumIntervalTypeByList(list));
+//		c.setSemesterPeriod(getCurriculumSemesterPeriodByList(list));
 	}
 
 	public String getCurriculumSemesterPeriodByList(List<Curriculum> list) {
@@ -92,7 +92,7 @@ public class FilterCurriculums {
 			if (i > 0) {
 				semesterPeroid.append("|");
 			}
-			semesterPeroid.append(list.get(i).getSemesterPeriod());
+//			semesterPeroid.append(list.get(i).getSemesterPeriod());
 		}
 
 		return semesterPeroid.toString();
@@ -104,7 +104,7 @@ public class FilterCurriculums {
 			if (i > 0) {
 				intervalType.append("|");
 			}
-			intervalType.append(list.get(i).getIntervalType());
+//			intervalType.append(list.get(i).getIntervalType());
 		}
 
 		return intervalType.toString();
@@ -116,7 +116,7 @@ public class FilterCurriculums {
 			if (i > 0) {
 				rawInfo.append(";");
 			}
-			rawInfo.append(list.get(i).getRawInfo());
+//			rawInfo.append(list.get(i).getRawInfo());
 		}
 
 		return rawInfo.toString();
@@ -138,9 +138,9 @@ public class FilterCurriculums {
 
 		for (int index = 0; index < curriculums.size(); index++) {
 			Curriculum c = curriculums.get(index);
-			if (c.getIntervalType().equals("")) {
-				continue;
-			}
+//			if (c.getIntervalType().equals("")) {
+//				continue;
+//			}
 			modfiyCurriculumByWeek(c, week);
 		}
 	}
@@ -148,9 +148,9 @@ public class FilterCurriculums {
 	private void removeBySemesterPeriod(List<Curriculum> curriculums, int week) {
 		for (int index = 0; index < curriculums.size(); index++) {
 			Curriculum c = curriculums.get(index);
-			if (c.getSemesterPeriod().equals("")) {
-				continue;
-			}
+//			if (c.getSemesterPeriod().equals("")) {
+//				continue;
+//			}
 			modfiyCurriculumBySemesterPeroid(c, week);
 		}
 	}
@@ -160,26 +160,26 @@ public class FilterCurriculums {
 		int num = 0;
 		while (num < modifiedCurriculums.size()) {
 			Curriculum temp = modifiedCurriculums.get(num);
-			int beginWeek = getBeginWeek(temp);
-			int endWeek = getEndWeek(temp);
-			if (week < beginWeek || week > endWeek) {
-				modifiedCurriculums.remove(num);
-				continue;
-			}
+//			int beginWeek = getBeginWeek(temp);
+//			int endWeek = getEndWeek(temp);
+//			if (week < beginWeek || week > endWeek) {
+//				modifiedCurriculums.remove(num);
+//				continue;
+//			}
 			num++;
 		}
 		setCurriculumProerty(c, modifiedCurriculums);
 	}
 
-	private int getBeginWeek(Curriculum c) {
-		String[] weeks = c.getSemesterPeriod().split("\\-");
-		return Integer.valueOf(weeks[0]);
-	}
+//	private int getBeginWeek(Curriculum c) {
+//		String[] weeks = c.getSemesterPeriod().split("\\-");
+//		return Integer.valueOf(weeks[0]);
+//	}
 
-	private int getEndWeek(Curriculum c) {
-		String[] weeks = c.getSemesterPeriod().split("\\-");
-		return Integer.valueOf(weeks[1]);
-	}
+//	private int getEndWeek(Curriculum c) {
+//		String[] weeks = c.getSemesterPeriod().split("\\-");
+//		return Integer.valueOf(weeks[1]);
+//	}
 
 	/**
 	 * delete empty curriculum and fix rawInfo
@@ -194,9 +194,9 @@ public class FilterCurriculums {
 				continue;
 			}
 
-			if (temp.getRawInfo().contains(";")) {
-				temp.setRawInfo(temp.getRawInfo().replace(";", "\n"));
-			}
+//			if (temp.getRawInfo().contains(";")) {
+//				temp.setRawInfo(temp.getRawInfo().replace(";", "\n"));
+//			}
 			num++;
 		}
 	}

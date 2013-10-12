@@ -231,8 +231,6 @@ public class CurriculumWidgetProvider_4x2 extends AppWidgetProvider {
 			{
 				curriculum = curriculumList.get(itemIndex);
 				curriculumWeek=curriculum.getName();
-				dayofweek = CurriculumUtils.formatCurriculumIndex(
-						curriculum.getCurriculumIndex(), curriculum.getTimeSpan());
 				curriculumWeek = CurriculumUtils.substrCurriculum(curriculumWeek);
 			}
 			else
@@ -244,8 +242,6 @@ public class CurriculumWidgetProvider_4x2 extends AppWidgetProvider {
 			
 			int entryId = updateBackground(androidContext, views, curriculum,
 					viewItemIndex);
-			int descriptionViewId = updateDescription(androidContext, views,
-					dayofweek, viewItemIndex);
 			int projectViewId = updateProject(androidContext, views,
 					curriculumWeek, viewItemIndex);
 			updateContexts(androidContext, views, viewItemIndex);

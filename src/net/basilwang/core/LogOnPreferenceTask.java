@@ -32,6 +32,7 @@ public class LogOnPreferenceTask extends AsyncTask<String, Integer, Boolean> {
 	int lastMileStone = 0;
 	private int mileStoneInterval = 0;
 	private HttpClient mHttpClient;
+	private String error;
 
 	public LogOnPreferenceTask(Context context,
 			AsyncTask<Object, Integer, String> task, HttpClient httpclient) {
@@ -63,14 +64,16 @@ public class LogOnPreferenceTask extends AsyncTask<String, Integer, Boolean> {
 
 			post.setEntity(new UrlEncodedFormEntity(postParameters));
 			HttpResponse httpResponse = mHttpClient.execute(post);
-			String cookie = httpResponse.getFirstHeader("Set-Cookie")
-					.getValue();
-			Log.v("cookie", cookie);
 			Log.v("status", httpResponse.getStatusLine().getStatusCode() + "");
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
 				String result = EntityUtils.toString(httpResponse.getEntity());
-				if (result.contains("验证码错误或已过期！"))
+				if (result.contains("验证码错误或已过期！")) {
+					error = "验证码错误或已过期！";
 					return false;
+				} else if (result.contains("用户名或密码错误！")) {
+					error = "验证码错误或已过期！";
+					return false;
+				}
 			}
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
@@ -120,8 +123,7 @@ public class LogOnPreferenceTask extends AsyncTask<String, Integer, Boolean> {
 			((Activity) mContext).finish();
 			Toast.makeText(
 					mContext,
-					mContext.getResources().getString(
-							R.string.errorpasswordmaybe), Toast.LENGTH_LONG)
+					error, Toast.LENGTH_LONG)
 					.show();
 
 		}

@@ -40,23 +40,23 @@ public class V11Migration implements Migration {
 			Curriculum c = new Curriculum();
 			c.setId(result.getInt(result.getColumnIndex("_id")));
 			c.setName(result.getString(result.getColumnIndex("name")));
-			c.setRawInfo(result.getString(result.getColumnIndex("rawinfo")));
+//			c.setRawInfo(result.getString(result.getColumnIndex("rawinfo")));
 			curriculums.add(c);
 		}
 		result.close();
 
 		for (int i = 0; i < curriculums.size(); i++) {
 			Curriculum c = curriculums.get(i);
-			c.setSemesterPeriod(getCurriculumSemesterPeriod(c.getRawInfo()));
-			c.setIntervalType(getIntervalType(c.getName()));
+//			c.setSemesterPeriod(getCurriculumSemesterPeriod(c.getRawInfo()));
+//			c.setIntervalType(getIntervalType(c.getName()));
 		}
 
 		sql = "UPDATE curriculum SET intervaltype = ?,semesterperiod = ? WHERE _id = ?";
 		for (int i = 0; i < curriculums.size(); i++) {
 			Curriculum c = curriculums.get(i);
-			Object[] bindArgs = { c.getIntervalType(), c.getSemesterPeriod(),
-					c.getId() };
-			db.execSQL(sql, bindArgs);
+//			Object[] bindArgs = { c.getIntervalType(), c.getSemesterPeriod(),
+//					c.getId() };
+//			db.execSQL(sql, bindArgs);
 		}
 	}
 

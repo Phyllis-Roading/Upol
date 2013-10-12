@@ -209,14 +209,12 @@ public class CurriculumWidget implements RemoteViewsService.RemoteViewsFactory{
 
         Curriculum curriculum = curriculumList.get(position);
 		String curriculumEvenWeek=curriculum.getName().split("\\;")[0];
-		curriculumEvenWeek+=CurriculumUtils.formatCurriculumIndex(curriculum.getCurriculumIndex(),curriculum.getTimeSpan());
 		curriculumEvenWeek=CurriculumUtils.substrCurriculum(curriculumEvenWeek);
 		String curriculumOddWeek="";
 		if(curriculum.getName().split("\\;").length==2)
 		{
 			curriculumOddWeek=curriculum.getName().split("\\;")[1];
 			Log.d(TAG, "curriculumOddWeek str is "+curriculumOddWeek);
-			curriculumOddWeek+=CurriculumUtils.formatCurriculumIndex(curriculum.getCurriculumIndex(),curriculum.getTimeSpan());
 			Log.d(TAG, "curriculumOddWeek str is "+curriculumOddWeek);
 			curriculumOddWeek=CurriculumUtils.substrCurriculum(curriculumOddWeek);
 			Log.d(TAG, "curriculumOddWeek str is "+curriculumOddWeek);

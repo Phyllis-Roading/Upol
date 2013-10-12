@@ -1,35 +1,69 @@
 package net.upol;
 
+import net.basilwang.CheckCodeDialog;
 import net.basilwang.R;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
-public class TeachPlanFragment extends ListFragment {
+import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.SubMenu;
+
+public class TeachPlanFragment extends SherlockFragment {
 
 	View planView;
+	private SampleAdapter adapter;
+	private ListView mlistView;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		planView = inflater.inflate(R.layout.teach_plan_list, null);
+		mlistView=(ListView)planView.findViewById(android.R.id.list);
 		initAdapter();
 		return planView;
 	}
 
 	private void initAdapter() {
-		SampleAdapter adapter = new SampleAdapter(this.getActivity());
+		adapter = new SampleAdapter(this.getActivity());
 		for (int i = 0; i < 4; i++) {
 			adapter.add(new SampleItem("(030103)有机化学", "专业基础课", "学分:4",
 					"学时:11", "学期:1", "未选", "通过"));
-			setListAdapter(adapter);
+			
 		}
+		mlistView.setAdapter(adapter);
+	}
 
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		this.setHasOptionsMenu(true);
+		super.onCreate(savedInstanceState);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent i = new Intent(getActivity(), CheckCodeDialog.class);
+		i.putExtra("task", "curriculum");
+		startActivityForResult(i, 0x1);
+		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		SubMenu sub = menu.addSubMenu("下载设置");
+		sub.setIcon(R.drawable.btn_download_setting);
+		sub.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+		super.onCreateOptionsMenu(menu, inflater);
 	}
 
 	private class SampleItem {

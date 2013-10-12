@@ -21,15 +21,7 @@ public class CurriculumService implements IDAOService {
 	 * 保存
 	 * */
 	public void save(Curriculum curriculum) {
-		curriculum.setSemesterid(getSemesterId(curriculum.getSemestername()));
 		String sql = "INSERT INTO curriculum (name,curriculumindex,teachername,classroom,intervaltype,dayofweek,timeSpan,myid,rawinfo,semesterid,semesterperiod) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-		Object[] bindArgs = { curriculum.getName(),
-				curriculum.getCurriculumIndex(), curriculum.getTeachername(),
-				curriculum.getClassroom(), curriculum.getIntervalType(),
-				curriculum.getDayOfWeek(), curriculum.getTimeSpan(),
-				curriculum.getMyid(), curriculum.getRawInfo(),
-				curriculum.getSemesterid(), curriculum.getSemesterPeriod() };
-		daoHelper.insert(sql, bindArgs);
 	}
 
 	// 2012-04-21 basilwang temporarily to use for not downloading curriculum
@@ -54,8 +46,6 @@ public class CurriculumService implements IDAOService {
 
 	public void update(Curriculum curriculum) {
 		String sql = "update curriculum set severity=? where _id=?";
-		Object[] bindArgs = { curriculum.getSeverity(), curriculum.getId() };
-		daoHelper.update(sql, bindArgs);
 	}
 
 	public List<Map<String, Object>> getCurriculumByDay(String semesterValue,
@@ -119,20 +109,8 @@ public class CurriculumService implements IDAOService {
 			c.setName(result.getString(result.getColumnIndex("name")));
 			c.setTimeSpan(result.getInt(result.getColumnIndex("timespan")));
 			int severity = result.getInt(result.getColumnIndex("severity"));
-			c.setSeverity(severity);
 			c.setTeachername(result.getString(result
 					.getColumnIndex("teachername")));
-			c.setClassroom(result.getString(result.getColumnIndex("classroom")));
-			c.setIntervalType(result.getString(result
-					.getColumnIndex("intervaltype")));
-			c.setRawInfo(result.getString(result.getColumnIndex("rawinfo")));
-			c.setSemesterid(result.getString(result
-					.getColumnIndex("semesterid")));
-			c.setCurriculumIndex(result.getInt(result
-					.getColumnIndex("curriculumindex")));
-			c.setDayOfWeek(result.getInt(result.getColumnIndex("dayofweek")));
-			c.setSemesterPeriod(result.getString(result
-					.getColumnIndex("semesterperiod")));
 			list.add(c);
 		}
 		daoHelper.closeDB();
@@ -152,21 +130,6 @@ public class CurriculumService implements IDAOService {
 			c.setName(result.getString(result.getColumnIndex("name")));
 			c.setTimeSpan(result.getInt(result.getColumnIndex("timespan")));
 			int severity = result.getInt(result.getColumnIndex("severity"));
-			c.setSeverity(severity);
-			c.setTeachername(result.getString(result
-					.getColumnIndex("teachername")));
-			c.setClassroom(result.getString(result.getColumnIndex("classroom")));
-			c.setIntervalType(result.getString(result
-					.getColumnIndex("intervaltype")));
-			c.setRawInfo(result.getString(result.getColumnIndex("rawinfo")));
-			c.setSemesterid(result.getString(result
-					.getColumnIndex("semesterid")));
-			c.setCurriculumIndex(result.getInt(result
-					.getColumnIndex("curriculumindex")));
-			c.setDayOfWeek(result.getInt(result.getColumnIndex("dayofweek")));
-
-			c.setSemesterPeriod(result.getString(result
-					.getColumnIndex("semesterperiod")));
 			list.add(c);
 		}
 		daoHelper.closeDB();
@@ -188,7 +151,6 @@ public class CurriculumService implements IDAOService {
 			int severity = result.getString(result.getColumnIndex("severity")) != null ? Integer
 					.valueOf(result.getString(result.getColumnIndex("severity")))
 					: -1;
-			curriculum.setSeverity(severity);
 		}
 		daoHelper.closeDB();
 		return curriculum;

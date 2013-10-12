@@ -77,9 +77,6 @@ public class ParseCurriculumInfo {
 		String rawInfo = fecthCurriculumRawInfo(gridContent);
 
 		c.setName(name);
-		c.setRawInfo(rawInfo);
-		c.setSemesterPeriod(getCurriculumSemesterPeriod(rawInfo));
-		c.setIntervalType(getIntervalType(name));
 	}
 
 	private String getCurriculumSemesterPeriod(String rawInfo) {
@@ -161,9 +158,6 @@ public class ParseCurriculumInfo {
 		String rawInfo = gridContent.replace("<br>", "\n");
 		String name = getCurriculumNameInfo(gridContent);
 		curriculum.setName(name);
-		curriculum.setRawInfo(rawInfo);
-		curriculum.setSemesterPeriod(getCurriculumSemesterPeriod(rawInfo));
-		curriculum.setIntervalType(getIntervalType(name));
 	}
 
 	private String fetchCurriculumInfo(String gridContent) {
@@ -299,8 +293,6 @@ public class ParseCurriculumInfo {
 			rownum = (i - 1) / columnCount;
 			colnum = ((i % columnCount) == 0 ? columnCount : i % columnCount) - 2;
 			newtds[rownum + (colnum - 1) * classperday + 1] = tds[i];
-			newtds[rownum + (colnum - 1) * classperday + 1]
-					.setDayOfWeek(colnum);
 			newtds[rownum + (colnum - 1) * classperday + 1].setName(tds[i]
 					.getName().equals("&nbsp;") ? "" : tds[i].getName());
 		}
@@ -309,7 +301,6 @@ public class ParseCurriculumInfo {
 
 	public Curriculum[] setCurriculumsIndex(Curriculum[] tds) {
 		for (int i = 1; i < tds.length; i++) {
-			tds[i].setCurriculumIndex(getCurriculumindex(i));
 		}
 		return tds;
 	}

@@ -94,15 +94,16 @@ public class SliderMenuFragment extends ListFragment {
 			newContent = new MessageFragment();
 			break;
 		case 2:
-			newContent=new MyScoreFragement();
+			newContent = new MyScoreFragement();
 			break;
 		case 3:
-			newContent = new CurriculumFragment();
+			newContent = new DownloadCurriculumFragment();
 			break;
 		case 4:
 			newContent = new TeachPlanFragment();
 			break;
 		case 5:
+			newContent = new CurriculumFragment();
 			break;
 		case 6:
 			break;

@@ -4,76 +4,23 @@ public class Curriculum {
 	private int id;
 	private String name;
 	private String teachername;
-	private String semestername;
-	private String semesterid;
-	private String classroom;
-	private String intervalType;
-	private int dayOfWeek;
+	private int credit;
 	private int timeSpan;
-	private int severity;
-	private String rawInfo;
-	private int curriculumIndex;
-	private String semesterPeriod;
+	private int noteNum;
+	private String workInfo;
 
 	public Curriculum() {
 	}
 
-	public Curriculum(String name, String rawInfo, String semesterPeriod,
-			String intervalType) {
+	public Curriculum(String name, String teachername, int credit,
+			int timeSpan, int noteNum, String workInfo) {
+		super();
 		this.name = name;
-		this.rawInfo = rawInfo;
-		this.semesterPeriod = semesterPeriod;
-		this.intervalType = intervalType;
-	}
-
-	public String getSemesterPeriod() {
-		return semesterPeriod;
-	}
-
-	public void setSemesterPeriod(String semesterPeriod) {
-		this.semesterPeriod = semesterPeriod;
-	}
-
-	public int getCurriculumIndex() {
-		return curriculumIndex;
-	}
-
-	public void setCurriculumIndex(int curriculumIndex) {
-		this.curriculumIndex = curriculumIndex;
-	}
-
-	private int myid;
-
-	public String getRawInfo() {
-		return rawInfo;
-	}
-
-	public void setRawInfo(String rawInfo) {
-		this.rawInfo = rawInfo;
-	}
-
-	public String getSemesterid() {
-		return semesterid;
-	}
-
-	public void setSemesterid(String semesterid) {
-		this.semesterid = semesterid;
-	}
-
-	public int getTimeSpan() {
-		return timeSpan;
-	}
-
-	public void setTimeSpan(int timeSpan) {
+		this.teachername = teachername;
+		this.credit = credit;
 		this.timeSpan = timeSpan;
-	}
-
-	public int getDayOfWeek() {
-		return dayOfWeek;
-	}
-
-	public void setDayOfWeek(int dayOfWeek) {
-		this.dayOfWeek = dayOfWeek;
+		this.noteNum = noteNum;
+		this.workInfo = workInfo;
 	}
 
 	public int getId() {
@@ -100,43 +47,36 @@ public class Curriculum {
 		this.teachername = teachername;
 	}
 
-	public String getSemestername() {
-		return semestername;
+	public int getCredit() {
+		return credit;
 	}
 
-	public void setSemestername(String semestername) {
-		this.semestername = semestername;
+	public void setCredit(int credit) {
+		this.credit = credit;
 	}
 
-	public String getClassroom() {
-		return classroom;
+	public int getTimeSpan() {
+		return timeSpan;
 	}
 
-	public void setClassroom(String classroom) {
-		this.classroom = classroom;
+	public void setTimeSpan(int timeSpan) {
+		this.timeSpan = timeSpan;
 	}
 
-	public String getIntervalType() {
-		return intervalType;
+	public int getNoteNum() {
+		return noteNum;
 	}
 
-	public void setIntervalType(String intervalType) {
-		this.intervalType = intervalType;
+	public void setNoteNum(int noteNum) {
+		this.noteNum = noteNum;
 	}
 
-	public int getSeverity() {
-		return severity;
+	public String getWorkInfo() {
+		return workInfo;
 	}
 
-	public void setSeverity(int severity) {
-		this.severity = severity;
+	public void setWorkInfo(String workInfo) {
+		this.workInfo = workInfo;
 	}
 
-	public int getMyid() {
-		return myid;
-	}
-
-	public void setMyid(int myid) {
-		this.myid = myid;
-	}
 }
