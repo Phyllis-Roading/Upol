@@ -10,6 +10,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.params.ClientPNames;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
@@ -59,8 +60,12 @@ public class LogOnPreferenceTask extends AsyncTask<String, Integer, Boolean> {
 		postParameters
 				.add(new BasicNameValuePair("rand", params[2].toString()));
 		try {
+
 			post.setEntity(new UrlEncodedFormEntity(postParameters));
 			HttpResponse httpResponse = mHttpClient.execute(post);
+			String cookie = httpResponse.getFirstHeader("Set-Cookie")
+					.getValue();
+			Log.v("cookie", cookie);
 			Log.v("status", httpResponse.getStatusLine().getStatusCode() + "");
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
 				String result = EntityUtils.toString(httpResponse.getEntity());
