@@ -16,6 +16,10 @@
 package net.basilwang;
 
 import static net.basilwang.dao.Preferences.LOGON_ACCOUNT_ID;
+
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import net.basilwang.core.CurriculumPreferenceTask;
 import net.basilwang.core.LoadCheckCodeTask;
 import net.basilwang.core.LogOnPreferenceTask;
@@ -48,11 +52,13 @@ public class CheckCodeDialog extends SherlockActivity {
 	TAHelper taHelper;
 	LoadCheckCodeTask loadCheckCodeTask;
 	ProgressDialog progressBar;
+	HttpClient httpclient;
     public ProgressDialog getProgressBar() {
 		return progressBar;
 	}
 	public void init() {
 		setContentView(R.layout.checkcode);
+		httpclient=new DefaultHttpClient();
 		// 2012-10-25 basilwang make dialog full window
 		WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
 		Window window = getWindow();
@@ -80,8 +86,6 @@ public class CheckCodeDialog extends SherlockActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        //unregister our receiver
-        //this.unregisterReceiver(this.mReceiver);
     }
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -93,13 +97,11 @@ public class CheckCodeDialog extends SherlockActivity {
 		final Button btnCancel = (Button) findViewById(R.id.btnCancel);
 		final ImageView checkCodeImage = (ImageView) findViewById(R.id.score_checkcode_image);
  
-		//checkCodeImage.setImageBitmap(TAHelper.Instance().getCheckCode());
 		checkCodeImage.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
 				reloadCheckCode();
-				// loadCheckCodeThread.start();
 			}
 
 		});
@@ -117,14 +119,15 @@ public class CheckCodeDialog extends SherlockActivity {
 					txtCheckCode.startAnimation(shake);
 				} else {
 					btnSave.setClickable(false);
-					AsyncTask<Integer, Integer, String> stask = null;
-//					if (taskName.equals("curriculum")) {
-//						stask = new CurriculumPreferenceTask(v.getContext());
-//					} else if (taskName.equals("score")) {
+					AsyncTask<Object, Integer, String> stask = null;
+					initsTask();
+					if (taskName.equals("curriculum")) {
+						stask = new CurriculumPreferenceTask(v.getContext(),httpclient);
+					} else if (taskName.equals("score")) {
 //						stask = new ScorePreferenceTask(v.getContext());
-//					} else {
-//						return;
-//					}
+					} else {
+						return;
+					}
 					
 					progressBar = new ProgressDialog(v.getContext());
 					progressBar.setCancelable(true);
@@ -135,10 +138,15 @@ public class CheckCodeDialog extends SherlockActivity {
 					progressBar.show();
 					
 					LogOnPreferenceTask task = new LogOnPreferenceTask(v
-							.getContext());
+							.getContext(),stask,httpclient);
 					task.execute(account.getUserno(), account.getPassword(),
-							checkCode, String.valueOf(accountId));
+							checkCode);
 				}
+			}
+
+			private void initsTask() {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 		btnCancel.setOnClickListener(new OnClickListener() {
@@ -162,7 +170,7 @@ public class CheckCodeDialog extends SherlockActivity {
 		}
 	}
 
-	loadCheckCodeTask = new LoadCheckCodeTask(this);
-	loadCheckCodeTask.execute("");
+	loadCheckCodeTask = new LoadCheckCodeTask(this,httpclient);
+	loadCheckCodeTask.execute();
 }
 }

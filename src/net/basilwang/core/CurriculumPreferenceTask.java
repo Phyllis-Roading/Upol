@@ -1,9 +1,18 @@
 package net.basilwang.core;
 
+import java.io.IOException;
+
 import net.basilwang.CheckCodeDialog;
 import net.basilwang.dao.CurriculumService;
 import net.basilwang.entity.Curriculum;
 import net.basilwang.enums.TAHelperDownloadPhrase;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.util.EntityUtils;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -12,21 +21,23 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class CurriculumPreferenceTask extends
-		AsyncTask<Integer, Integer, String> {
+		AsyncTask<Object, Integer, String> {
 	static final String TAG = "CurriculumPreferenceTask";
 	private Context mContext;
 	private CurriculumService curriculumService;
 	String title;
-	private int accountId;
+//	private int accountId;
 	private String semesterIndex;
 	private String semesterYear;
 	private String semesterValue;
 	int lastMileStone = 15;
 	private int mileStoneInterval = 0;
+	private HttpClient mHttpClient;
 
-	public CurriculumPreferenceTask(Context context) {
+	public CurriculumPreferenceTask(Context context,HttpClient httpClient) {
 		curriculumService = new CurriculumService(context);
 		mContext = context;
+		mHttpClient=httpClient;
 		semesterValue = PreferenceManager.getDefaultSharedPreferences(mContext)
 				.getString("curriculum_semester_name", "");
 	}
@@ -39,13 +50,26 @@ public class CurriculumPreferenceTask extends
 	}
 
 	@Override
-	protected String doInBackground(Integer... params) {
-		accountId = params[0];
-		return HttpClient(params);
+	protected String doInBackground(Object... params) {
+		String result="";
+		String url = "http://xueli.upol.cn/M4/entity/student/xspt.jsp";
+		HttpGet get = new HttpGet(url);
+		try {
+			HttpResponse httpResponse = mHttpClient.execute(get);
+			Log.v("status", httpResponse.getStatusLine().getStatusCode() + "");
+			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+				result = EntityUtils.toString(httpResponse.getEntity());
+			}
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return result;
 
 	}
 
-	private String HttpClient(Integer... params) {
+	private String HttpClient(Object... params) {
 		OnDownloadProgressListener listener = new OnDownloadProgressListener() {
 
 			@Override
@@ -92,9 +116,9 @@ public class CurriculumPreferenceTask extends
 			return;
 		}
 
-		curriculumService.delete(accountId, semesterValue);
+//		curriculumService.delete(accountId, semesterValue);
 		for (int i = 1; i < s.length; i++) {
-			s[i].setMyid(accountId);
+//			s[i].setMyid(accountId);
 			s[i].setSemestername(semesterValue);
 			curriculumService.save(s[i]);
 		}

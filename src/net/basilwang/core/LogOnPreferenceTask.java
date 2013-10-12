@@ -26,15 +26,17 @@ import android.widget.Toast;
 public class LogOnPreferenceTask extends AsyncTask<String, Integer, Boolean> {
 	static final String TAG = "LogOnPreferenceTask";
 	private Context mContext;
-	// private AsyncTask<Integer, Integer, String> mTask;
+	private AsyncTask<Object, Integer, String> mTask;
 	String title;
-	private int accountId;
 	int lastMileStone = 0;
 	private int mileStoneInterval = 0;
+	private HttpClient mHttpClient;
 
-	public LogOnPreferenceTask(Context context) {
+	public LogOnPreferenceTask(Context context,
+			AsyncTask<Object, Integer, String> task, HttpClient httpclient) {
 		mContext = context;
-		// mTask = task;
+		mTask = task;
+		this.mHttpClient = httpclient;
 	}
 
 	@Override
@@ -46,39 +48,36 @@ public class LogOnPreferenceTask extends AsyncTask<String, Integer, Boolean> {
 
 	@Override
 	protected Boolean doInBackground(String... params) {
-		accountId = Integer.valueOf(params[3]);
-		String url = "http://xueli.upol.cn:9888/M4/upol/platform/login.jsp";
-		HttpClient httpClicent = new DefaultHttpClient();
+		String url = "http://xueli.upol.cn/M4/upol/platform/login.jsp";
 		HttpPost post = new HttpPost(url);
 		List<NameValuePair> postParameters = new ArrayList<NameValuePair>();
-		postParameters.add(new BasicNameValuePair("login_id", params[0]));
-		postParameters.add(new BasicNameValuePair("input_password", params[1]));
+		postParameters.add(new BasicNameValuePair("login_id", params[0]
+				.toString()));
+		postParameters.add(new BasicNameValuePair("input_password", params[1]
+				.toString()));
 		postParameters.add(new BasicNameValuePair("type", "STUDENT"));
-		postParameters.add(new BasicNameValuePair("rand", params[2]));
+		postParameters
+				.add(new BasicNameValuePair("rand", params[2].toString()));
 		try {
 			post.setEntity(new UrlEncodedFormEntity(postParameters));
-			HttpResponse httpResponse = httpClicent.execute(post);
+			HttpResponse httpResponse = mHttpClient.execute(post);
 			Log.v("status", httpResponse.getStatusLine().getStatusCode() + "");
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
 				String result = EntityUtils.toString(httpResponse.getEntity());
 				if (result.contains("验证码错误或已过期！"))
 					return false;
-				Log.v("result", result);
 			}
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
-			Log.v("error", e.toString());
 			return false;
 		} catch (IOException e) {
 			e.printStackTrace();
-			Log.v("error1", e.toString());
 			return false;
 		}
 		return true;
 
 	}
 
-	
 	// private Boolean HttpClient(String... params) {
 	// OnDownloadProgressListener listener = new OnDownloadProgressListener() {
 	//
@@ -111,7 +110,7 @@ public class LogOnPreferenceTask extends AsyncTask<String, Integer, Boolean> {
 
 	protected void onPostExecute(Boolean isLogOn) {
 		if (isLogOn) {
-			// mTask.execute(accountId);
+			mTask.execute();
 		} else {
 			((Activity) mContext).finish();
 			Toast.makeText(

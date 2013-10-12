@@ -94,7 +94,7 @@ public class StaticAttachmentActivity extends BaseActivity implements
 			mContent = getSupportFragmentManager().getFragment(
 					savedInstanceState, "mContent");
 		if (mContent == null)
-			mContent = new MessageFragment();
+			mContent = new DownloadCurriculumFragment();
 
 		// set the Above View
 		setContentView(R.layout.main_container);

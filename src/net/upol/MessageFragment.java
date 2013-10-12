@@ -3,7 +3,8 @@ package net.upol;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+
+import net.basilwang.R;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -17,7 +18,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import net.basilwang.R;
 import view.XListView;
 import view.XListView.IXListViewListener;
 import android.content.Context;
@@ -43,14 +43,13 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 	private XListView mListView;
 	private Handler mHandler;
 	SampleAdapter adapter;
-	GetNotificationTask getNotifTask;
 	private String indexUrl;
-	private static int moreCount=0;
+	private static int moreCount = 0;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		indexUrl="http://xueli.upol.cn:9888/M4/upol/platform/zxgg/zxgg_01.jsp?pageInt=";
+		indexUrl = "http://xueli.upol.cn:9888/M4/upol/platform/zxgg/zxgg_01.jsp?pageInt=";
 		messageView = inflater.inflate(R.layout.message_list, null);
 		mListView = (XListView) messageView.findViewById(R.id.xListView);
 		mListView.setPullLoadEnable(true);
@@ -63,9 +62,7 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 
 	private void initAdapter() {
 		adapter = new SampleAdapter(this.getActivity());
-		getNotifTask = new GetNotificationTask();
-		getNotifTask
-				.execute(indexUrl+1);
+		new GetNotificationTask().execute(indexUrl + getPageNum());
 	}
 
 	private void onLoad() {
@@ -83,13 +80,8 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 			@Override
 			public void run() {
 				adapter.clear();
-				for (int i = 0; i < 1; i++) {
-					adapter.add(new SampleItem(
-							"关于2013年9月网络统考考生提前身份证验证的通知",
-							"http://xueli.upol.cn:9888/M4/upol/platform/zxgg/zxgg_01.jsp",
-							"2013-08-29", R.drawable.open));
-				}
-				mListView.setAdapter(adapter);
+				moreCount = 0;
+				new GetNotificationTask().execute(indexUrl+getPageNum());
 				onLoad();
 			}
 		}, 2000);
@@ -102,17 +94,14 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 			public void run() {
 				adapter.notifyDataSetChanged();
 				moreCount++;
-				getNotifTask.execute(indexUrl+moreCount/2);
-				for (int i = 0; i < 1; i++) {
-					adapter.add(new SampleItem(
-							"关于2013年9月网络统考考生提前身份证验证的通知",
-							"http://xueli.upol.cn:9888/M4/upol/platform/zxgg/zxgg_01.jsp",
-							"2013-08-29", R.drawable.open));
-				}
-				mListView.setAdapter(adapter);
+				new GetNotificationTask().execute(indexUrl + getPageNum());
 				onLoad();
 			}
 		}, 2000);
+	}
+
+	public int getPageNum() {
+		return moreCount / 2 + 1;
 	}
 
 	private class SampleItem {
@@ -147,6 +136,7 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 			date.setText(getItem(position).date);
 			ImageView open = (ImageView) convertView.findViewById(R.id.open);
 			open.setBackgroundResource(getItem(position).open);
+//			convertView.setTag(0, getItem(position).url);
 
 			return convertView;
 		}
@@ -156,6 +146,7 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		Intent i = new Intent(getActivity(), MessageActivity.class);
 		i.putExtra("position", arg2);
+//		i.putExtra("link", arg1.getTag(0).toString());
 		startActivity(i);
 	}
 
@@ -197,7 +188,7 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 		private void parseWithJsoup(String HTML) {
 			Document doc = Jsoup.parse(HTML);
 			Elements trs = doc.select("tr[valign=middle]");
-			for (int i = 0; i < 6; i++) {
+			for (int i = getStartIndex(); i < getStartIndex() + 8; i++) {
 				Element a = trs.get(i).select("a").first();
 				adapter.add(new SampleItem(a.text(),
 						"http://xueli.upol.cn:9888/M4/upol/platform/zxgg/"
@@ -209,6 +200,10 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 
 		private String getDate(String str) {
 			return str.replace("(", "").replace(")", "");
+		}
+
+		private int getStartIndex() {
+			return moreCount % 2 * 8;
 		}
 
 	}

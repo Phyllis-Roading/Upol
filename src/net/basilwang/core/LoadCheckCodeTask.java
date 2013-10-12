@@ -8,7 +8,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
 import android.app.Activity;
@@ -20,22 +19,22 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class LoadCheckCodeTask extends AsyncTask<String, Integer, Bitmap> {
+public class LoadCheckCodeTask extends AsyncTask<Object, Integer, Bitmap> {
 	private Context mContext;
+	private HttpClient mHttpClient;
 
-	public LoadCheckCodeTask(Context context) {
+	public LoadCheckCodeTask(Context context, HttpClient httpclient) {
 		mContext = context;
-
+		mHttpClient=httpclient;
 	}
 
 	@Override
-	protected Bitmap doInBackground(String... params) {
+	protected Bitmap doInBackground(Object... params) {
 		Bitmap result = null;
-		String url = "http://xueli.upol.cn:9888/M4/upol/platform/image.jsp";
-		HttpClient httpclient = new DefaultHttpClient();
+		String url = "http://xueli.upol.cn/M4/upol/platform/image.jsp";
 		HttpPost post = new HttpPost(url);
 		try {
-			HttpResponse response = httpclient.execute(post);
+			HttpResponse response = mHttpClient.execute(post);
 			if (response.getStatusLine().getStatusCode() == 200) {
 				byte[] data = EntityUtils.toByteArray(response.getEntity());
 				result = BitmapFactory.decodeByteArray(data, 0, data.length);
@@ -43,10 +42,8 @@ public class LoadCheckCodeTask extends AsyncTask<String, Integer, Bitmap> {
 			}
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
-			 Log.i("error", e.toString()+""); 
 		} catch (IOException e) {
 			e.printStackTrace();
-			 Log.i("error1", e.toString()); 
 		}
 		return result;
 	}
@@ -67,11 +64,6 @@ public class LoadCheckCodeTask extends AsyncTask<String, Integer, Bitmap> {
 
 			}
 		}
-	}
-
-	public void setContext(Context context) {
-		mContext = context;
-
 	}
 
 }
