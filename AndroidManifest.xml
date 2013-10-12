@@ -221,6 +221,7 @@
             android:name="net.upol.MessageActivity"
             android:label="@string/title_activity_message" >
         </activity>
+        <activity android:name="BaseActivity"></activity>
     </application>
 
 </manifest>

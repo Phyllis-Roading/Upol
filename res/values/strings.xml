@@ -84,7 +84,7 @@
     <string name="contributor3">李晓玉</string>
     <string name="contributor4">Xinran Huang</string>
     <string name="contributor5">Yujie Cao</string>
-<!--      <string name="contributor6">阿萌是小平weibo.com/u/1635069512</string> -->
+    <!-- <string name="contributor6">阿萌是小平weibo.com/u/1635069512</string> -->
     <string name="contributor7">Jing guo</string>
     <string name="contributor8">Wenjing Zhang</string>
     <string name="tip">如果您发现了Bug请反馈至ocam@163.com，我们表示感谢！</string>
@@ -114,5 +114,6 @@
     <string name="xlistview_header_last_time">上次更新时间：</string>
     <string name="xlistview_footer_hint_normal">查看更多</string>
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    <string name="message_content">通知内容</string>
 
 </resources>
