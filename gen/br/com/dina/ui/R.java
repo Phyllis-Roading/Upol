@@ -37,16 +37,16 @@ public final class R {
 		public static final int icon = 0x7f0200ba;
 	}
 	public static final class id {
-		public static final int buttonsContainer = 0x7f07005e;
-		public static final int chevron = 0x7f070063;
-		public static final int image = 0x7f070060;
-		public static final int itemContainer = 0x7f07005f;
-		public static final int itemCount = 0x7f070062;
+		public static final int buttonsContainer = 0x7f07005d;
+		public static final int chevron = 0x7f070062;
+		public static final int image = 0x7f07005f;
+		public static final int itemContainer = 0x7f07005e;
+		public static final int itemCount = 0x7f070061;
 		public static final int scrollView = 0x7f07004f;
-		public static final int subtitle = 0x7f070061;
+		public static final int subtitle = 0x7f070060;
 		public static final int tableView = 0x7f070050;
 		public static final int title = 0x7f07004a;
-		public static final int viewsContainer = 0x7f07005d;
+		public static final int viewsContainer = 0x7f07005c;
 	}
 	public static final class layout {
 		public static final int list_container = 0x7f030028;
