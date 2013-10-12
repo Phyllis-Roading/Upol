@@ -1,6 +1,7 @@
 package net.basilwang;
 
 import net.basilwang.R;
+import net.upol.CurriclumnFragment;
 import net.upol.MessageFragment;
 import net.upol.TeachPlanFragment;
 import android.content.Context;
@@ -45,8 +46,8 @@ public class SliderMenuFragment extends ListFragment {
 	}
 
 	private int getIconResc(int position) {
-		int[] iconResc = { R.drawable.admin, R.drawable.curriculum,
-				R.drawable.mygrade, R.drawable.downloadc, R.drawable.set,
+		int[] iconResc = { R.drawable.admin, R.drawable.message,
+				R.drawable.grade, R.drawable.curriculmn, R.drawable.set,
 				R.drawable.message, R.drawable.shared, R.drawable.exit };
 		return iconResc[position];
 
@@ -95,6 +96,7 @@ public class SliderMenuFragment extends ListFragment {
 		case 2:
 			break;
 		case 3:
+			newContent = new CurriclumnFragment();
 			break;
 		case 4:
 			newContent = new TeachPlanFragment();

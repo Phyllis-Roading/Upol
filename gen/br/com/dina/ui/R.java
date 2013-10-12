@@ -29,24 +29,24 @@ public final class R {
 		public static final int background_view_rounded_single = 0x7f020075;
 		public static final int background_view_rounded_top = 0x7f020076;
 		public static final int button_text_color = 0x7f02008b;
-		public static final int chevron = 0x7f02008d;
-		public static final int chevron_default = 0x7f02008e;
-		public static final int chevron_default_down = 0x7f02008f;
-		public static final int chevron_white = 0x7f020090;
-		public static final int chevron_white_down = 0x7f020091;
-		public static final int icon = 0x7f0200b9;
+		public static final int chevron = 0x7f02008e;
+		public static final int chevron_default = 0x7f02008f;
+		public static final int chevron_default_down = 0x7f020090;
+		public static final int chevron_white = 0x7f020091;
+		public static final int chevron_white_down = 0x7f020092;
+		public static final int icon = 0x7f0200ba;
 	}
 	public static final class id {
-		public static final int buttonsContainer = 0x7f07005e;
-		public static final int chevron = 0x7f070063;
-		public static final int image = 0x7f070060;
-		public static final int itemContainer = 0x7f07005f;
-		public static final int itemCount = 0x7f070062;
-		public static final int scrollView = 0x7f07004e;
-		public static final int subtitle = 0x7f070061;
-		public static final int tableView = 0x7f07004f;
-		public static final int title = 0x7f070049;
-		public static final int viewsContainer = 0x7f07005d;
+		public static final int buttonsContainer = 0x7f07005f;
+		public static final int chevron = 0x7f070064;
+		public static final int image = 0x7f070061;
+		public static final int itemContainer = 0x7f070060;
+		public static final int itemCount = 0x7f070063;
+		public static final int scrollView = 0x7f07004f;
+		public static final int subtitle = 0x7f070062;
+		public static final int tableView = 0x7f070050;
+		public static final int title = 0x7f07004a;
+		public static final int viewsContainer = 0x7f07005e;
 	}
 	public static final class layout {
 		public static final int list_container = 0x7f03002a;

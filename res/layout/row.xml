@@ -7,7 +7,7 @@
     <ImageView
         android:id="@+id/row_icon"
         android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:padding="10dp"
         android:src="@drawable/ic_launcher" />
 
@@ -20,10 +20,4 @@
         android:padding="10dp"
         android:text="Medium Text"
         android:textAppearance="@android:style/TextAppearance.Medium" />
-    <ImageView
-        android:id="@+id/new_message_icon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:padding="10dp" />
-
-</LinearLayout>
+</LinearLayout>

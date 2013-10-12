@@ -2,8 +2,6 @@ package net.upol;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-
 import net.basilwang.R;
 import view.XListView;
 import view.XListView.IXListViewListener;
@@ -25,17 +23,13 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 		OnItemClickListener {
 	View messageView;
 	private XListView mListView;
-	private ArrayList<String> items = new ArrayList<String>();
 	private Handler mHandler;
-	private int start = 0;
-	private static int refreshCnt = 0;
 	SampleAdapter adapter;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		messageView = inflater.inflate(R.layout.message_list, null);
-		geneItems();
 		mListView = (XListView) messageView.findViewById(R.id.xListView);
 		mListView.setPullLoadEnable(true);
 		mListView.setOnItemClickListener(this);
@@ -55,12 +49,6 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 
 	}
 
-	private void geneItems() {
-		for (int i = 0; i != 5; ++i) {
-			items.add("refresh cnt " + (++start));
-		}
-	}
-
 	private void onLoad() {
 		mListView.stopRefresh();
 		mListView.stopLoadMore();
@@ -75,19 +63,12 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 		mHandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				start = ++refreshCnt;
-				items.clear();
-				geneItems();
 				adapter.clear();
 				for (int i = 0; i < 1; i++) {
 					adapter.add(new SampleItem("关于2013年9月网络统考考生提前身份证验证的通知",
 							"2013-08-29", R.drawable.open));
 				}
 				mListView.setAdapter(adapter);
-				// mAdapter.notifyDataSetChanged();
-				// mAdapter = new ArrayAdapter<String>(XListViewActivity.this,
-				// R.layout.list_item, items);
-				// mListView.setAdapter(mAdapter);
 				onLoad();
 			}
 		}, 2000);
@@ -98,7 +79,6 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 		mHandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				geneItems();
 				adapter.notifyDataSetChanged();
 				for (int i = 0; i < 1; i++) {
 					adapter.add(new SampleItem("关于2013年9月网络统考考生提前身份证验证的通知",
