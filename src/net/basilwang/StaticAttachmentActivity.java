@@ -19,19 +19,11 @@ import static net.basilwang.dao.Preferences.LOGON_ACCOUNT_ID;
 import static net.basilwang.dao.Preferences.LOGON_ACCOUNT_PREFERENCES;
 import static net.basilwang.dao.Preferences.LOGON_ADD_PREFERENCES;
 import static net.basilwang.dao.Preferences.LOGON_PREFERENCES;
-
-import java.util.Calendar;
 import java.util.List;
-
 import net.basilwang.PreferenceFragmentPlugin.OnPreferenceAttachedListener;
 import net.basilwang.config.SAXParse;
 import net.basilwang.dao.AccountService;
-import net.basilwang.dao.SemesterService;
 import net.basilwang.entity.Account;
-import net.basilwang.entity.Semester;
-import net.basilwang.sever.Message;
-import net.basilwang.sever.MessageService;
-import net.basilwang.sever.RequestMessage;
 import net.basilwang.utils.NetworkUtils;
 import net.upol.MessageFragment;
 import android.content.Intent;
@@ -45,12 +37,10 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.SubMenu;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
@@ -75,13 +65,11 @@ public class StaticAttachmentActivity extends BaseActivity implements
 	private Fragment mContent;
 	private SlidingMenu menu;
 	protected static int nuwMessages;
-	private String newSemesterBegin;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// setTheme(SampleList.THEME); //Used for theme switching in samples
 		super.onCreate(savedInstanceState);
-		requestMessages();// 获取服务器端最新消�
 		menu = new SlidingMenu(this);
 		setTitle(SAXParse.getTAConfiguration().getSelectedCollege().getName());
 		getSherlock().setContentView(R.layout.main_container);
@@ -89,12 +77,15 @@ public class StaticAttachmentActivity extends BaseActivity implements
 		accountService = new AccountService(this);
 		refreshTabBarTitle();
 
+		StringBuffer url = new StringBuffer(
+				"http://xueli.upol.cn/M4/upol/platform/");
+		url.append("zxgg/zxgg_01.jsp?pageInt=");
 		// add slidingMenu
 		if (savedInstanceState != null)
 			mContent = getSupportFragmentManager().getFragment(
 					savedInstanceState, "mContent");
 		if (mContent == null)
-			mContent = new DownloadCurriculumFragment();
+			mContent = new MessageFragment(url);
 
 		// set the Above View
 		setContentView(R.layout.main_container);
@@ -119,59 +110,6 @@ public class StaticAttachmentActivity extends BaseActivity implements
 			isExiting = false;
 		}
 
-		newUserOrNot();
-
-	}
-
-	// 联网登录时获取最新推送消息，插入数据�
-	private void requestMessages() {
-		MessageService messageService = new MessageService(this);
-		try {
-			AccountService service = new AccountService(this);
-			Account account = service.getAccounts().get(0);
-			Log.v("1231321313213213text", account.getUserno());
-			RequestMessage request = new RequestMessage();
-			request.setResult(account.getUserno());
-			Message message = new Message();
-			message.setContent(request.getResult());
-			nuwMessages = message.getContent().size();
-			messageService.save(message);
-			// 判断本条消息是否修改开学日�
-			for (String m : message.getContent()) {
-				if (m.substring(10, 26).equals("系统已自动将您的开学日期设置为：")) {
-					newSemesterBegin = m;
-					updateSemesterBegin();
-				}
-			}
-		} catch (Exception e) {
-
-		}
-	}
-
-	// 根据服务器端的信息修改开学日�
-	private void updateSemesterBegin() {
-		Calendar cal = Calendar.getInstance();
-		String sYear = newSemesterBegin.substring(26, 30);
-		String sMonth = newSemesterBegin.substring(31, 33);
-		String sDay = newSemesterBegin.substring(34, 36);
-		int iYear = Integer.parseInt(sYear);
-		int iMonth = Integer.parseInt(sMonth) - 1;
-		int iDay = Integer.parseInt(sDay);
-		cal.set(iYear, iMonth, iDay);
-		Semester semester = new Semester();
-		semester.setBeginDate(cal.getTime().getTime());
-		SemesterService service = new SemesterService(this);
-		service.updateBeginDataOfSemester(semester);
-	}
-
-	/**
-	 * If this is a new user,please add account
-	 */
-	private void newUserOrNot() {
-		if (accountService.getAccounts().size() == 0 && !isExiting) {
-			Intent intent = new Intent(this, LogonPreferenceActivity.class);
-			startActivity(intent);
-		}
 	}
 
 	/*
@@ -210,18 +148,6 @@ public class StaticAttachmentActivity extends BaseActivity implements
 	// @曹洪�自己改写的，用于返回是否联网
 	private boolean isNetAvailable() {
 		return NetworkUtils.isConnect(this) ? true : false;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getTitle().equals("周/天")) {
-			Toast.makeText(this, "周视图暂时关闭，下个版本炫丽呈现", Toast.LENGTH_SHORT).show();
-		}
-		if (item.getTitle() == getResources().getString(R.string.checknetwork)) {
-			checkNetwork();
-
-		}
-		return super.onOptionsItemSelected(item);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package net.basilwang;
 
+import net.basilwang.utils.NetworkUtils;
 import net.upol.CurriculumFragment;
 import net.upol.MessageFragment;
 import net.upol.MyScoreFragement;
@@ -16,13 +17,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.actionbarsherlock.view.SubMenu;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class SliderMenuFragment extends ListFragment {
 
 	public static final int EXIT_APPLICATION = 0x0001;
 	private SlidingMenu menu;
+	SubMenu subMenuForNetwork;
 
 	public SliderMenuFragment(SlidingMenu menu) {
 		this.menu = menu;
@@ -86,37 +90,47 @@ public class SliderMenuFragment extends ListFragment {
 
 	}
 
+	// @曹洪�自己改写的，用于返回是否联网
+	private boolean isNetAvailable() {
+		return NetworkUtils.isConnect(this.getActivity()) ? true : false;
+	}
+
 	@Override
 	public void onListItemClick(ListView lv, View v, int position, long id) {
-		Fragment newContent = null;
-		StringBuffer url=new StringBuffer("http://xueli.upol.cn/M4/upol/platform/");
-		switch (position) {
-		case 1:
-			url.append("zxgg/zxgg_01.jsp?pageInt=");
-			newContent = new MessageFragment(url);
-			break;
-		case 2:
-			newContent = new MyScoreFragement();
-			break;
-		case 3:
-			newContent = new CurriculumFragment();
-			break;
-		case 4:
-			newContent = new TeachPlanFragment();
-			break;
-		case 5:
-			newContent = new DownloadCurriculumFragment();
-			break;
-		case 6:
-			url.append("ksap/ksap_01.jsp?pageInt=");
-			newContent = new MessageFragment(url);
-			break;
-		case 7:
-			exit();
-			break;
-		}
-		if (newContent != null)
-			switchFragment(newContent);
+		if (isNetAvailable()) {
+			Fragment newContent = null;
+			StringBuffer url = new StringBuffer(
+					"http://xueli.upol.cn/M4/upol/platform/");
+			switch (position) {
+			case 1:
+				url.append("zxgg/zxgg_01.jsp?pageInt=");
+				newContent = new MessageFragment(url);
+				break;
+			case 2:
+				newContent = new MyScoreFragement();
+				break;
+			case 3:
+				newContent = new CurriculumFragment();
+				break;
+			case 4:
+				newContent = new TeachPlanFragment();
+				break;
+			case 5:
+				newContent = new DownloadCurriculumFragment();
+				break;
+			case 6:
+				url.append("ksap/ksap_01.jsp?pageInt=");
+				newContent = new MessageFragment(url);
+				break;
+			case 7:
+				exit();
+				break;
+			}
+			if (newContent != null)
+				switchFragment(newContent);
+		} else
+			Toast.makeText(getActivity(), "网络异常", Toast.LENGTH_SHORT).show();
+
 	}
 
 	// the meat of switching the above fragment

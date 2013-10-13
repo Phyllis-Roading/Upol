@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import net.basilwang.R;
+import net.basilwang.utils.NetworkUtils;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -49,7 +50,7 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 	ProgressBar pb;
 
 	public MessageFragment(StringBuffer url) {
-		this.indexUrl=url.toString();
+		this.indexUrl = url.toString();
 	}
 
 	@Override
@@ -57,13 +58,22 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 			Bundle savedInstanceState) {
 		messageView = inflater.inflate(R.layout.message_list, null);
 		mListView = (XListView) messageView.findViewById(R.id.xListView);
-		pb = (ProgressBar) messageView.findViewById(R.id.pb);
-		mListView.setPullLoadEnable(true);
-		mListView.setOnItemClickListener(this);
-		initAdapter();
-		mListView.setXListViewListener(this);
-		mHandler = new Handler();
+		if (isNetAvailable()) {
+			pb = (ProgressBar) messageView.findViewById(R.id.pb);
+			pb.setVisibility(View.VISIBLE);
+			mListView.setPullLoadEnable(true);
+			mListView.setOnItemClickListener(this);
+			initAdapter();
+			mListView.setXListViewListener(this);
+			mHandler = new Handler();
+		} else
+			Toast.makeText(getActivity(), "网络异常", Toast.LENGTH_SHORT).show();
 		return messageView;
+	}
+
+	// @曹洪�自己改写的，用于返回是否联网
+	private boolean isNetAvailable() {
+		return NetworkUtils.isConnect(this.getActivity()) ? true : false;
 	}
 
 	private void initAdapter() {
@@ -219,9 +229,8 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 		}
 
 		private String getFormatLink(String attr) {
-			return (indexUrl
-					+ attr.split("=")[1]).replace("_01", "_02").replace(
-							"pageInt", "id");
+			return (indexUrl + attr.split("=")[1]).replace("_01", "_02")
+					.replace("pageInt", "id");
 		}
 
 		private String getDate(String str) {
