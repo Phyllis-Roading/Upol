@@ -62,7 +62,7 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 
 	private void initAdapter() {
 		adapter = new SampleAdapter(this.getActivity());
-		new GetNotificationTask().execute(indexUrl + getPageNum());
+		new GetNotificationTask().execute(indexUrl + getPageNum(),"true");
 	}
 
 	private void onLoad() {
@@ -81,7 +81,8 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 			public void run() {
 				adapter.clear();
 				moreCount = 0;
-				new GetNotificationTask().execute(indexUrl+getPageNum());
+				new GetNotificationTask().execute(indexUrl + getPageNum(),
+						"true");
 				onLoad();
 			}
 		}, 2000);
@@ -92,9 +93,10 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 		mHandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				adapter.notifyDataSetChanged();
 				moreCount++;
-				new GetNotificationTask().execute(indexUrl + getPageNum());
+				new GetNotificationTask().execute(indexUrl + getPageNum(),
+						"false");
+				adapter.notifyDataSetChanged();
 				onLoad();
 			}
 		}, 2000);
@@ -136,7 +138,7 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 			date.setText(getItem(position).date);
 			ImageView open = (ImageView) convertView.findViewById(R.id.open);
 			open.setBackgroundResource(getItem(position).open);
-//			convertView.setTag(0, getItem(position).url);
+			// convertView.setTag(0, getItem(position).url);
 
 			return convertView;
 		}
@@ -146,12 +148,13 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		Intent i = new Intent(getActivity(), MessageActivity.class);
 		i.putExtra("position", arg2);
-//		i.putExtra("link", arg1.getTag(0).toString());
+		// i.putExtra("link", arg1.getTag(0).toString());
 		startActivity(i);
 	}
 
 	private class GetNotificationTask extends
 			AsyncTask<Object, Integer, String> {
+		private String isRefresh;
 
 		@Override
 		protected void onPostExecute(String result) {
@@ -169,6 +172,8 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 			String result = "";
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpPost post = new HttpPost((String) params[0]);
+			Log.v("isRefresh", (String)params[1]);
+			isRefresh = (String) params[1];
 			try {
 				HttpResponse response = httpClient.execute(post);
 				if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
@@ -195,7 +200,9 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 								+ a.attr("href"), getDate(trs.get(i).child(2)
 								.text()), R.drawable.open));
 			}
-			mListView.setAdapter(adapter);
+			if (isRefresh.equals("true"))
+				mListView.setAdapter(adapter);
+
 		}
 
 		private String getDate(String str) {
