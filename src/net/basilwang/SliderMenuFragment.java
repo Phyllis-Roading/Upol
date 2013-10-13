@@ -97,38 +97,39 @@ public class SliderMenuFragment extends ListFragment {
 
 	@Override
 	public void onListItemClick(ListView lv, View v, int position, long id) {
+
+		Fragment newContent = null;
+		StringBuffer url = new StringBuffer(
+				"http://xueli.upol.cn/M4/upol/platform/");
+		switch (position) {
+		case 1:
+			url.append("zxgg/zxgg_01.jsp?pageInt=");
+			newContent = new MessageFragment(url);
+			break;
+		case 2:
+			newContent = new MyScoreFragement();
+			break;
+		case 3:
+			newContent = new CurriculumFragment();
+			break;
+		case 4:
+			newContent = new TeachPlanFragment();
+			break;
+		case 5:
+			newContent = new DownloadCurriculumFragment();
+			break;
+		case 6:
+			url.append("ksap/ksap_01.jsp?pageInt=");
+			newContent = new MessageFragment(url);
+			break;
+		case 7:
+			exit();
+			break;
+		}
 		if (isNetAvailable()) {
-			Fragment newContent = null;
-			StringBuffer url = new StringBuffer(
-					"http://xueli.upol.cn/M4/upol/platform/");
-			switch (position) {
-			case 1:
-				url.append("zxgg/zxgg_01.jsp?pageInt=");
-				newContent = new MessageFragment(url);
-				break;
-			case 2:
-				newContent = new MyScoreFragement();
-				break;
-			case 3:
-				newContent = new CurriculumFragment();
-				break;
-			case 4:
-				newContent = new TeachPlanFragment();
-				break;
-			case 5:
-				newContent = new DownloadCurriculumFragment();
-				break;
-			case 6:
-				url.append("ksap/ksap_01.jsp?pageInt=");
-				newContent = new MessageFragment(url);
-				break;
-			case 7:
-				exit();
-				break;
-			}
 			if (newContent != null)
 				switchFragment(newContent);
-		} else
+		} else if (!isNetAvailable() && newContent != null)
 			Toast.makeText(getActivity(), "网络异常", Toast.LENGTH_SHORT).show();
 
 	}
