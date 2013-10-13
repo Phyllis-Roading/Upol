@@ -1,21 +1,18 @@
 package net.upol;
 
-import java.util.ArrayList;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.MenuItem;
-
 import net.basilwang.R;
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.annotation.SuppressLint;
-import android.content.Intent;
+
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuItem;
 
 public class MessageActivity extends SherlockActivity {
 
-	WebView webView;
-	ArrayList<String> list;
-	int position;
+	private WebView webView;
 
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override
@@ -34,13 +31,10 @@ public class MessageActivity extends SherlockActivity {
 		getSupportActionBar().setTitle(R.string.message_content);
 		getSupportActionBar().setIcon(R.drawable.cancel);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		list = new ArrayList<String>();
 		Intent i = getIntent();
-		position = i.getIntExtra("position", 0) - 1;
-		System.out.println("succeed" + position);
+		String url = i.getStringExtra("link");
 		webView = (WebView) findViewById(R.id.webView1);
-		list.add("http://www.sina.com.cn/");
-		webView.loadUrl("http://www.sina.com.cn/");
+		webView.loadUrl(url);
 	}
 
 	@Override

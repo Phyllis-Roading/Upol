@@ -1,4 +1,4 @@
-package net.upol;
+﻿package net.upol;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -48,10 +48,13 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 	private static int moreCount = 0;
 	ProgressBar pb;
 
+	public MessageFragment(StringBuffer url) {
+		this.indexUrl=url.toString();
+	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		indexUrl = "http://xueli.upol.cn:9888/M4/upol/platform/zxgg/zxgg_01.jsp?pageInt=";
 		messageView = inflater.inflate(R.layout.message_list, null);
 		mListView = (XListView) messageView.findViewById(R.id.xListView);
 		pb = (ProgressBar) messageView.findViewById(R.id.pb);
@@ -96,6 +99,7 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 		mHandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
+				adapter.notifyDataSetChanged();
 				moreCount++;
 				new GetNotificationTask().execute(indexUrl + getPageNum(),
 						"false");
@@ -141,7 +145,7 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 			date.setText(getItem(position).date);
 			ImageView open = (ImageView) convertView.findViewById(R.id.open);
 			open.setBackgroundResource(getItem(position).open);
-			// convertView.setTag(0, getItem(position).url);
+			convertView.setTag(R.id.list_view_item_tag, getItem(position).url);
 
 			return convertView;
 		}
@@ -151,7 +155,7 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		Intent i = new Intent(getActivity(), MessageActivity.class);
 		i.putExtra("position", arg2);
-		// i.putExtra("link", arg1.getTag(0).toString());
+		i.putExtra("link", arg1.getTag(R.id.list_view_item_tag).toString());
 		startActivity(i);
 	}
 
@@ -204,14 +208,20 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 			Elements trs = doc.select("tr[valign=middle]");
 			for (int i = getStartIndex(); i < getStartIndex() + 8; i++) {
 				Element a = trs.get(i).select("a").first();
-				adapter.add(new SampleItem(a.text(),
-						"http://xueli.upol.cn:9888/M4/upol/platform/zxgg/"
-								+ a.attr("href"), getDate(trs.get(i).child(2)
-								.text()), R.drawable.open));
+				adapter.add(new SampleItem(a.text(), getFormatLink(a
+						.attr("href")), getDate(trs.get(i).child(2).text()),
+						R.drawable.open));
+				Log.v("result", a.text() + getFormatLink(a.attr("href"))
+						+ getDate(trs.get(i).child(2).text()));
 			}
 			if (isRefresh.equals("true"))
 				mListView.setAdapter(adapter);
+		}
 
+		private String getFormatLink(String attr) {
+			return (indexUrl
+					+ attr.split("=")[1]).replace("_01", "_02").replace(
+							"pageInt", "id");
 		}
 
 		private String getDate(String str) {
