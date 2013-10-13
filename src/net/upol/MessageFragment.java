@@ -34,6 +34,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +46,7 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 	SampleAdapter adapter;
 	private String indexUrl;
 	private static int moreCount = 0;
+	ProgressBar pb;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +54,7 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 		indexUrl = "http://xueli.upol.cn:9888/M4/upol/platform/zxgg/zxgg_01.jsp?pageInt=";
 		messageView = inflater.inflate(R.layout.message_list, null);
 		mListView = (XListView) messageView.findViewById(R.id.xListView);
+		pb = (ProgressBar) messageView.findViewById(R.id.pb);
 		mListView.setPullLoadEnable(true);
 		mListView.setOnItemClickListener(this);
 		initAdapter();
@@ -62,7 +65,7 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 
 	private void initAdapter() {
 		adapter = new SampleAdapter(this.getActivity());
-		new GetNotificationTask().execute(indexUrl + getPageNum(),"true");
+		new GetNotificationTask().execute(indexUrl + getPageNum(), "true");
 	}
 
 	private void onLoad() {
@@ -154,10 +157,16 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 
 	private class GetNotificationTask extends
 			AsyncTask<Object, Integer, String> {
+		@Override
+		protected void onProgressUpdate(Integer... values) {
+			super.onProgressUpdate(values);
+		}
+
 		private String isRefresh;
 
 		@Override
 		protected void onPostExecute(String result) {
+			pb.setVisibility(View.GONE);
 			if (result.contains("登陆超时,请重新登陆！")) {
 				Toast.makeText(getActivity(), "请检查学号、密码和验证码",
 						Toast.LENGTH_SHORT).show();
@@ -172,7 +181,7 @@ public class MessageFragment extends Fragment implements IXListViewListener,
 			String result = "";
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpPost post = new HttpPost((String) params[0]);
-			Log.v("isRefresh", (String)params[1]);
+			Log.v("isRefresh", (String) params[1]);
 			isRefresh = (String) params[1];
 			try {
 				HttpResponse response = httpClient.execute(post);
