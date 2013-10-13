@@ -57,6 +57,7 @@ public class CurriculumPreferenceTask extends
 	@Override
 	protected String doInBackground(Object... params) {
 		String result = "";
+		publishProgress();
 		String url = "http://xueli.upol.cn/learning/entity/student/student_toFirstPage.action";
 		HttpGet get = new HttpGet(url);
 		try {
