@@ -21,7 +21,6 @@ import static net.basilwang.dao.Preferences.LOGON_ADD_PREFERENCES;
 import static net.basilwang.dao.Preferences.LOGON_PREFERENCES;
 import java.util.List;
 import net.basilwang.PreferenceFragmentPlugin.OnPreferenceAttachedListener;
-import net.basilwang.config.SAXParse;
 import net.basilwang.dao.AccountService;
 import net.basilwang.entity.Account;
 import net.basilwang.utils.NetworkUtils;
@@ -39,7 +38,6 @@ import android.preference.PreferenceScreen;
 import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
 import android.widget.Toast;
-
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.SubMenu;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -56,8 +54,6 @@ public class StaticAttachmentActivity extends BaseActivity implements
 	static final String TAG = "StaticAttachmentActivity";
 	SubMenu subMenuForNetwork;
 	// SubMenu subMenuWithoutNetwork;
-	private int accountId;
-	private AccountService accountService;
 	private Boolean isExiting = false;
 	/**
 	 * SsoHandler 仅当sdk支持sso时有效，
@@ -65,27 +61,24 @@ public class StaticAttachmentActivity extends BaseActivity implements
 	private Fragment mContent;
 	private SlidingMenu menu;
 	protected static int nuwMessages;
+	StringBuffer url;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// setTheme(SampleList.THEME); //Used for theme switching in samples
 		super.onCreate(savedInstanceState);
 		menu = new SlidingMenu(this);
-		setTitle(SAXParse.getTAConfiguration().getSelectedCollege().getName());
 		getSherlock().setContentView(R.layout.main_container);
-
-		accountService = new AccountService(this);
-		refreshTabBarTitle();
-
-		StringBuffer url = new StringBuffer(
-				"http://xueli.upol.cn/M4/upol/platform/");
+		url = new StringBuffer("http://xueli.upol.cn/M4/upol/platform/");
 		url.append("zxgg/zxgg_01.jsp?pageInt=");
 		// add slidingMenu
 		if (savedInstanceState != null)
 			mContent = getSupportFragmentManager().getFragment(
 					savedInstanceState, "mContent");
-		if (mContent == null)
+		if (mContent == null) {
 			mContent = new MessageFragment(url);
+			getSupportActionBar().setTitle(R.string.message_title);
+		}
 
 		// set the Above View
 		setContentView(R.layout.main_container);
@@ -196,30 +189,10 @@ public class StaticAttachmentActivity extends BaseActivity implements
 		return true;
 	}
 
-	private void refreshTabBarTitle() {
-		accountId = PreferenceManager.getDefaultSharedPreferences(this).getInt(
-				LOGON_ACCOUNT_ID, 0);
-		Account account = accountService.getAccountById(accountId);
-		if (account.getName() != null) {
-			getSupportActionBar()
-					.setTitle(
-							account.getName()
-									+ this.getResources().getString(
-											R.string.myaccount));
-		} else {
-			getSupportActionBar()
-					.setTitle(
-							this.getResources().getString(
-									R.string.pleasecreateaccount));
-		}
-	}
-
 	private void reloadData(PreferenceCategory logonPreference,
 			PreferenceScreen logonAddPreference,
 			PreferenceManager preferenceManager) {
 		// 2012-11-23 basilwang refresh tabbar title
-		refreshTabBarTitle();
-
 		logonPreference.removeAll();
 		logonPreference.addPreference(logonAddPreference);
 		int accountId = PreferenceManager.getDefaultSharedPreferences(this)
@@ -296,11 +269,12 @@ public class StaticAttachmentActivity extends BaseActivity implements
 		}
 	}
 
-	public void switchContent(Fragment fragment) {
+	public void switchContent(Fragment fragment, String title) {
 		mContent = fragment;
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.mainContainer, fragment).commit();
 		getSlidingMenu().showContent();
+		getSupportActionBar().setTitle(title);
 	}
 
 	public void exit() {

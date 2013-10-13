@@ -1,7 +1,5 @@
 package net.upol;
 
-import java.util.zip.Inflater;
-
 import net.basilwang.R;
 import android.content.Context;
 import android.os.Bundle;
@@ -25,7 +23,6 @@ public class MyScoreFragement extends ListFragment {
 	}
 
 	private void initAdapter() {
-		// TODO Auto-generated method stub
 		SampleAdapter adapter = new SampleAdapter(this.getActivity());
 		for (int i = 0; i < 4; i++) {
 			adapter.add(new SampleItem("计算机应用基础", "学分:4", "10春季", "正考：", "补考：",

@@ -1686,7 +1686,7 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f0c0007;
-        public static final int action_settings=0x7f0c0072;
+        public static final int action_settings=0x7f0c0077;
         public static final int already_checked=0x7f0c0024;
         public static final int app_name=0x7f0c000e;
         public static final int author=0x7f0c0050;
@@ -1694,7 +1694,7 @@ containing a value of this type.
         public static final int cancel_button_title=0x7f0c0025;
         public static final int cemester_index_choose_preferences=0x7f0c003c;
         public static final int cemester_start_preferences_tip=0x7f0c003d;
-        public static final int changing_fragments=0x7f0c0070;
+        public static final int changing_fragments=0x7f0c0075;
         public static final int checkcode_hint=0x7f0c003e;
         public static final int checkcode_text=0x7f0c0040;
         public static final int checkcode_tip=0x7f0c003f;
@@ -1709,6 +1709,7 @@ containing a value of this type.
         public static final int contributor7=0x7f0c0060;
         public static final int contributor8=0x7f0c0061;
         public static final int contributortitle=0x7f0c005a;
+        public static final int curriculmn_title=0x7f0c0069;
         public static final int day1=0x7f0c0032;
         public static final int day2=0x7f0c0033;
         public static final int day3=0x7f0c0034;
@@ -1725,12 +1726,12 @@ containing a value of this type.
         public static final int developer5=0x7f0c0057;
         public static final int developer6=0x7f0c0058;
         public static final int developer7=0x7f0c0059;
-        public static final int downloaded_semester=0x7f0c0069;
+        public static final int downloaded_semester=0x7f0c006e;
         public static final int entranceyear=0x7f0c001c;
         public static final int entranceyear_hint=0x7f0c001d;
-        public static final int errorpasswordmaybe=0x7f0c0066;
+        public static final int errorpasswordmaybe=0x7f0c006b;
         public static final int hello=0x7f0c000d;
-        public static final int hello_world=0x7f0c0073;
+        public static final int hello_world=0x7f0c0078;
         public static final int logoff_tips=0x7f0c0020;
         public static final int logoff_title=0x7f0c0021;
         public static final int logon_add_preferences=0x7f0c0014;
@@ -1746,10 +1747,11 @@ containing a value of this type.
         public static final int logon_user=0x7f0c001a;
         public static final int menu_done=0x7f0c0022;
         public static final int menu_set=0x7f0c0023;
-        public static final int message_content=0x7f0c007b;
-        public static final int myaccount=0x7f0c0065;
+        public static final int message_content=0x7f0c0080;
+        public static final int message_title=0x7f0c0065;
+        public static final int motion_title=0x7f0c006a;
         public static final int networkavailable=0x7f0c0041;
-        public static final int no_downloaded_semester=0x7f0c0068;
+        public static final int no_downloaded_semester=0x7f0c006d;
         public static final int noaccount=0x7f0c0063;
         public static final int nocurriculum=0x7f0c004d;
         public static final int nonetwork=0x7f0c0042;
@@ -1763,6 +1765,7 @@ containing a value of this type.
         public static final int scheduling_score=0x7f0c002f;
         public static final int scheduling_title=0x7f0c002b;
         public static final int scheduling_update=0x7f0c0030;
+        public static final int score_title=0x7f0c0067;
         public static final int semesterindexvalue1=0x7f0c0045;
         public static final int semesterindexvalue2=0x7f0c0046;
         public static final int semesterindexvalue3=0x7f0c0047;
@@ -1770,10 +1773,10 @@ containing a value of this type.
         public static final int semesterindexvalue5=0x7f0c0049;
         public static final int semesterindexvalue6=0x7f0c004a;
         public static final int semesterindexvalue7=0x7f0c004b;
-        public static final int set_semester_begindate=0x7f0c006b;
-        public static final int set_semester_enddate=0x7f0c006c;
-        public static final int share_content=0x7f0c006e;
-        public static final int shareonweibo=0x7f0c006d;
+        public static final int set_semester_begindate=0x7f0c0070;
+        public static final int set_semester_enddate=0x7f0c0071;
+        public static final int share_content=0x7f0c0073;
+        public static final int shareonweibo=0x7f0c0072;
         public static final int sync_interval_1m=0x7f0c0028;
         public static final int sync_interval_1w=0x7f0c0027;
         public static final int sync_interval_2m=0x7f0c0029;
@@ -1783,21 +1786,23 @@ containing a value of this type.
         public static final int tabconfig=0x7f0c0011;
         public static final int tabcurriculum=0x7f0c0010;
         public static final int tabmore=0x7f0c0012;
-        public static final int text_to_share_hint=0x7f0c006f;
+        public static final int teach_title=0x7f0c0068;
+        public static final int test_title=0x7f0c0066;
+        public static final int text_to_share_hint=0x7f0c0074;
         public static final int thank_ruguozhai=0x7f0c0031;
         public static final int tip=0x7f0c0062;
-        public static final int title_activity_menu_change=0x7f0c0071;
-        public static final int title_activity_message=0x7f0c0074;
+        public static final int title_activity_menu_change=0x7f0c0076;
+        public static final int title_activity_message=0x7f0c0079;
         public static final int weekview=0x7f0c003a;
-        public static final int weekview_unlock=0x7f0c0067;
+        public static final int weekview_unlock=0x7f0c006c;
         public static final int weibo=0x7f0c0051;
-        public static final int widget_loading=0x7f0c006a;
-        public static final int xlistview_footer_hint_normal=0x7f0c0079;
-        public static final int xlistview_footer_hint_ready=0x7f0c007a;
-        public static final int xlistview_header_hint_loading=0x7f0c0077;
-        public static final int xlistview_header_hint_normal=0x7f0c0075;
-        public static final int xlistview_header_hint_ready=0x7f0c0076;
-        public static final int xlistview_header_last_time=0x7f0c0078;
+        public static final int widget_loading=0x7f0c006f;
+        public static final int xlistview_footer_hint_normal=0x7f0c007e;
+        public static final int xlistview_footer_hint_ready=0x7f0c007f;
+        public static final int xlistview_header_hint_loading=0x7f0c007c;
+        public static final int xlistview_header_hint_normal=0x7f0c007a;
+        public static final int xlistview_header_hint_ready=0x7f0c007b;
+        public static final int xlistview_header_last_time=0x7f0c007d;
     }
     public static final class style {
         public static final int DialogAnimation=0x7f0d0066;

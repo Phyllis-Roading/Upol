@@ -29,19 +29,19 @@ public class CurriculumFragment extends SherlockFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		curriclumnView = inflater.inflate(R.layout.teach_plan_list, null);
-		mlistView=(ListView)curriclumnView.findViewById(android.R.id.list);
+		mlistView = (ListView) curriclumnView.findViewById(android.R.id.list);
 		initAdapter();
 		return curriclumnView;
 	}
 
 	private void initAdapter() {
 		adapter = new SampleAdapter(this.getActivity());
-//		for (int i = 0; i < 4; i++) {
-//			adapter.add(new SampleItem("建筑制图", "石老师", "学分:4", "时长:3", "发帖数:3",
-//					"作业(已做/阶段数):0/0"));
-//			
-//		}
-//		mlistView.setAdapter(adapter);
+		// for (int i = 0; i < 4; i++) {
+		// adapter.add(new SampleItem("建筑制图", "石老师", "学分:4", "时长:3", "发帖数:3",
+		// "作业(已做/阶段数):0/0"));
+		//
+		// }
+		// mlistView.setAdapter(adapter);
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class CurriculumFragment extends SherlockFragment {
 		this.setHasOptionsMenu(true);
 		super.onCreate(savedInstanceState);
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Intent i = new Intent(getActivity(), CheckCodeDialog.class);
@@ -67,25 +67,24 @@ public class CurriculumFragment extends SherlockFragment {
 		super.onCreateOptionsMenu(menu, inflater);
 	}
 
-	
-//	public class SampleItem {
-//		public String tag1;
-//		public String tag2;
-//		public String tag3;
-//		public String tag4;
-//		public String tag5;
-//		public String tag6;
-//
-//		public SampleItem(String tag1, String tag2, String tag3, String tag4,
-//				String tag5, String tag6) {
-//			this.tag1 = tag1;
-//			this.tag2 = tag2;
-//			this.tag3 = tag3;
-//			this.tag4 = tag4;
-//			this.tag5 = tag5;
-//			this.tag6 = tag6;
-//		}
-//	}
+	// public class SampleItem {
+	// public String tag1;
+	// public String tag2;
+	// public String tag3;
+	// public String tag4;
+	// public String tag5;
+	// public String tag6;
+	//
+	// public SampleItem(String tag1, String tag2, String tag3, String tag4,
+	// String tag5, String tag6) {
+	// this.tag1 = tag1;
+	// this.tag2 = tag2;
+	// this.tag3 = tag3;
+	// this.tag4 = tag4;
+	// this.tag5 = tag5;
+	// this.tag6 = tag6;
+	// }
+	// }
 
 	public class SampleAdapter extends ArrayAdapter<SampleItem> {
 
@@ -120,9 +119,9 @@ public class CurriculumFragment extends SherlockFragment {
 		}
 
 	}
-	
-	public void setAdapter(SampleAdapter adapter){
-		this.adapter=adapter;
+
+	public void setAdapter(SampleAdapter adapter) {
+		this.adapter = adapter;
 	}
 
 }

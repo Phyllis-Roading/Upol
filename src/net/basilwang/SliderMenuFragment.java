@@ -99,28 +99,40 @@ public class SliderMenuFragment extends ListFragment {
 	public void onListItemClick(ListView lv, View v, int position, long id) {
 
 		Fragment newContent = null;
+		String title = null;
 		StringBuffer url = new StringBuffer(
 				"http://xueli.upol.cn/M4/upol/platform/");
 		switch (position) {
 		case 1:
 			url.append("zxgg/zxgg_01.jsp?pageInt=");
 			newContent = new MessageFragment(url);
+			title = getActivity().getResources().getString(
+					R.string.message_title);
 			break;
 		case 2:
 			newContent = new MyScoreFragement();
+			title = getActivity().getResources()
+					.getString(R.string.score_title);
 			break;
 		case 3:
 			newContent = new CurriculumFragment();
+			title = getActivity().getResources().getString(
+					R.string.curriculmn_title);
 			break;
 		case 4:
 			newContent = new TeachPlanFragment();
+			title = getActivity().getResources()
+					.getString(R.string.teach_title);
 			break;
 		case 5:
 			newContent = new DownloadCurriculumFragment();
+			title = getActivity().getResources().getString(
+					R.string.motion_title);
 			break;
 		case 6:
 			url.append("ksap/ksap_01.jsp?pageInt=");
 			newContent = new MessageFragment(url);
+			title = getActivity().getResources().getString(R.string.test_title);
 			break;
 		case 7:
 			exit();
@@ -128,19 +140,19 @@ public class SliderMenuFragment extends ListFragment {
 		}
 		if (isNetAvailable()) {
 			if (newContent != null)
-				switchFragment(newContent);
+				switchFragment(newContent, title);
 		} else if (!isNetAvailable() && newContent != null)
 			Toast.makeText(getActivity(), "网络异常", Toast.LENGTH_SHORT).show();
 
 	}
 
 	// the meat of switching the above fragment
-	private void switchFragment(Fragment fragment) {
+	private void switchFragment(Fragment fragment, String title) {
 		if (getActivity() == null)
 			return;
 		if (getActivity() instanceof StaticAttachmentActivity) {
 			StaticAttachmentActivity fca = (StaticAttachmentActivity) getActivity();
-			fca.switchContent(fragment);
+			fca.switchContent(fragment, title);
 		}
 	}
 
