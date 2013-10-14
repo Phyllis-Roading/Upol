@@ -2,7 +2,7 @@
 <resources>
 
     <string name="hello">Hello World, UndergraduateActivity!</string>
-    <string name="app_name">山财大学生助手</string>
+    <string name="app_name">石大在线</string>
     <string name="tabcalendar">日程</string>
     <string name="tabcurriculum">课程</string>
     <string name="tabconfig">配置</string>

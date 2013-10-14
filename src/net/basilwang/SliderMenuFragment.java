@@ -138,10 +138,9 @@ public class SliderMenuFragment extends ListFragment {
 			exit();
 			break;
 		}
-		if (isNetAvailable()) {
-			if (newContent != null)
-				switchFragment(newContent, title);
-		} else if (!isNetAvailable() && newContent != null)
+		if (isNetAvailable() && newContent != null)
+			switchFragment(newContent, title);
+		else if (!isNetAvailable() && newContent != null)
 			Toast.makeText(getActivity(), "网络异常", Toast.LENGTH_SHORT).show();
 
 	}
